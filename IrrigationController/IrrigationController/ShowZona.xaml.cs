@@ -28,7 +28,7 @@ namespace IrrigationController
         }
         public async void OnDeleteClicked(object sender, EventArgs args)
         {
-            bool accepted = await DisplayAlert("Megerősítés", "Biztos törölni akarod?", "Igen", "Nem");
+            bool accepted = await DisplayAlert("Confirm", "Biztos törölni akarod?", "Igen", "Nem");
             if (accepted)
             {
                 var vRealmDb = Realm.GetInstance();
