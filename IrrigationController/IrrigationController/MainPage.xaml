@@ -6,9 +6,7 @@
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Zóna hozzáadása"
-                     IconImageSource="ToolbarItem_AddZona.png"
-                     Order="Primary"
-                     Priority="0"
+            IconImageSource="ToolbarItem_AddZona.png"
                      Clicked="ToolbarItem_ZonaAddClicked"/>
     </ContentPage.ToolbarItems>
     

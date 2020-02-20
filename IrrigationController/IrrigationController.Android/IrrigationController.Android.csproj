@@ -105,5 +105,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ToolbarItem_AddZona.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ToolbarItem_SaveZona.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
