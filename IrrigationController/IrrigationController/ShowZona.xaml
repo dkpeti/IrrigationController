@@ -3,29 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IrrigationController.ShowZona"
              Title="Zóna adatai">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="ToolbarItem_EditZona.png"
+                     Clicked="OnEditClicked"/>
+        <ToolbarItem IconImageSource="ToolbarItem_DeleteZona.png"
+                     Clicked="OnDeleteClicked"/>
+    </ContentPage.ToolbarItems>
     <StackLayout Margin="15,15,15,15" BackgroundColor="#eeeeee">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
-            <Label Grid.Row ="0" Grid.Column="1" Text="Név" />
-            <Label Grid.Row="0" Grid.Column="2" Text ="{Binding Nev}" />
-            <Button Grid.Row ="5" Grid.Column="1" Text="Szerkesztés" Clicked="OnEditClicked" />
-            <Button Grid.Row="5" Grid.Column="2" Text="Törlés" Clicked="OnDeleteClicked" />
+            <Image  Source="image_bokrok.jpg" Grid.RowSpan="4"  Grid.ColumnSpan="5"  Aspect="AspectFill"/>
+            <Label Margin="20,0,0,0"  Grid.Row ="5" Grid.Column="0" Text="Név" FontSize="30" />
+            <Label Margin="10,0,20,0" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" Text ="{Binding Nev}" FontSize="30" />
         </Grid>
     </StackLayout>
 </ContentPage>

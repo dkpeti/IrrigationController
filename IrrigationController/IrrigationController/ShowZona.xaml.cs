@@ -41,7 +41,6 @@ namespace IrrigationController
                     trans.Commit();
                 }
             }
-            await Navigation.PopToRootAsync();
         }
     }
 }

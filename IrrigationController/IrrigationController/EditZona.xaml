@@ -24,8 +24,10 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Image  Source="image_bokrok.jpg" Grid.RowSpan="4"  Grid.ColumnSpan="5"  Aspect="AspectFill"/>
-            <Label  Margin="20,0,0,0"         Grid.Row="5"      Grid.Column="0"     FontSize="30" Text="Név"/>
-            <Entry  Margin="10,0,20,0"  Text="{Binding Nev}"    Grid.Row="5"      Grid.Column="1"     Grid.ColumnSpan="4"         x:Name="txtZonaNev" Keyboard="Text" />
+            <Label  Margin="20,0,0,0"         Grid.Row="5"      Grid.Column="0"      FontSize="30" Text="Név"/>
+            <Entry  Margin="10,0,20,0"        Grid.Row="5"      Grid.Column="1"      Grid.ColumnSpan="4" Text="{Binding Nev}" x:Name="txtZonaNev" Keyboard="Text" />
+            <Button Margin="20,0,20,0"        Grid.Row="7"      Grid.ColumnSpan="5" Text="Kép választása" x:Name="KepValasztas"/>
+            <Button Margin="20,0,20,0"        Grid.Row="8"      Grid.ColumnSpan="5" Text="Kép készítése" x:Name="KepKeszites"/>
         </Grid>
     </StackLayout>
 </ContentPage>
