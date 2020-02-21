@@ -1,5 +1,5 @@
-﻿using IrrigationController.Class;
-using Realms;
+﻿using IrrigationController.Model;
+using IrrigationController.Service;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,15 +18,22 @@ namespace IrrigationController
             BindingContext = mSelZona;
         }
 
-        public void OnSaveClicked(object sender, EventArgs args)
+        public async void OnSaveClicked(object sender, EventArgs args)
         {
-            var vRealmDb = Realm.GetInstance();
-            using (var trans = vRealmDb.BeginWrite())
+            var response = await App.ZonaService.EditZonaItemAsync(mSelZona);
+            switch (response.Status)
             {
-                mSelZona.Nev = txtZonaNev.Text;
-                trans.Commit();
+                case Status.SUCCESS:
+                    {
+                        await Navigation.PushAsync(new MainPage());
+                        break;
+                    }
+                case Status.OTHER_ERROR:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        break;
+                    }
             }
-            Navigation.PopToRootAsync();
         }
     }
 }

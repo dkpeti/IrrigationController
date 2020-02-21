@@ -1,5 +1,5 @@
-﻿using IrrigationController.Class;
-using Realms;
+﻿using IrrigationController.Model;
+using IrrigationController.Service;
 using System;
 using System.Linq;
 using Xamarin.Forms;
@@ -10,7 +10,9 @@ namespace IrrigationController
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ShowZona : ContentPage
     {
-        readonly Zona mSelZona;
+        private readonly int zonaId;
+        private Zona zona;
+
         public ShowZona()
         {
             InitializeComponent();
@@ -18,27 +20,57 @@ namespace IrrigationController
         public ShowZona(Zona aSelZona)
         {
             InitializeComponent();
-            mSelZona = aSelZona;
-            BindingContext = mSelZona;
+            zonaId = aSelZona.Id;
         }
 
-        public void OnEditClicked(object sender, EventArgs args)
+        protected override async void OnAppearing()
         {
-            Navigation.PushAsync(new EditZona(mSelZona));
+            base.OnAppearing();
+            var response = await App.ZonaService.GetOneZonaByIdAsync(zonaId);
+            switch (response.Status)
+            {
+                case Status.SUCCESS:
+                    {
+                        zona = response.Data;
+                        BindingContext = response.Data;
+                        break;
+                    }
+                case Status.NOT_FOUND:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await Navigation.PopAsync();
+                        break;
+                    }
+                case Status.OTHER_ERROR:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        break;
+                    }
+            }
+        }
+
+        public async void OnEditClicked(object sender, EventArgs args)
+        {
+            await Navigation.PushAsync(new EditZona(zona));
         }
         public async void OnDeleteClicked(object sender, EventArgs args)
         {
-            bool accepted = await DisplayAlert("Megerősítés", "Biztos törölni akarod?", "Igen", "Nem");
+            bool accepted = await DisplayAlert("Törlés", "Biztos törli a "+$"{zona.Nev}"+" zónát?", "Igen", "Nem");
             if (accepted)
             {
-                var vRealmDb = Realm.GetInstance();
-                var vSelZona = vRealmDb.All<Zona>().First(b => b.ZonaId == mSelZona.ZonaId);
-
-                // Delete an object with a transaction  
-                using (var trans = vRealmDb.BeginWrite())
+                var response = await App.ZonaService.DeleteTodoItemAsync(zona);
+                switch (response.Status)
                 {
-                    vRealmDb.Remove(vSelZona);
-                    trans.Commit();
+                    case Status.SUCCESS:
+                        {
+                            await Navigation.PopAsync();
+                            break;
+                        }
+                    case Status.OTHER_ERROR:
+                        {
+                            await DisplayAlert("Error", response.StatusString, "Ok");
+                            break;
+                        }
                 }
             }
         }

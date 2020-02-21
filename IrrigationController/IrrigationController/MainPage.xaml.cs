@@ -1,7 +1,8 @@
-﻿using IrrigationController.Class;
-using Realms;
+﻿using IrrigationController.Model;
+using IrrigationController.Service;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace IrrigationController
@@ -14,26 +15,39 @@ namespace IrrigationController
 
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
-            var vRealmDb = Realm.GetInstance();
-            var vAllZona = vRealmDb.All<Zona>();
-            lstData.ItemsSource = vAllZona;
+            var response = await App.ZonaService.GetAllZonaAsync();
+            switch(response.Status)
+            {
+                case Status.SUCCESS:
+                    {
+                        lstData.ItemsSource = response.Data;
+                        break;
+                    }
+                case Status.OTHER_ERROR:
+                    {
+                        lstData.ItemsSource = response.Data;
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        break;
+                    }
+            }
         }
 
-        void OnSelection(object sender, SelectedItemChangedEventArgs e)
+        public async void OnSelection(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null)
             {
                 return;
             }
             var vSelUser = (Zona)e.SelectedItem;
-            Navigation.PushAsync(new ShowZona(vSelUser));
+            await Navigation.PushAsync(new ShowZona(vSelUser));
+            lstData.SelectedItem = null;
         }
-        public void ToolbarItem_ZonaAddClicked(object sender, EventArgs args)
+        public async void ToolbarItem_ZonaAddClicked(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new AddZona());
+            await Navigation.PushAsync(new AddZona());
         }
         void InditasImageTapped(object sender, EventArgs args)
         {
