@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IrrigationController.AddZona"
-             Title="Zóna hozzáadása">
-    
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="IrrigationController.PiEdit"
+             Title="Pi szerkesztés">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Mentés"
-                     IconImageSource="ToolbarItem_SaveZona.png"
-                     Clicked="OnSaveClicked"/>
+        <ToolbarItem IconImageSource="ToolbarItem_Save.png"
+                     Clicked="SaveClicked"/>
     </ContentPage.ToolbarItems>
-    
+
     <StackLayout Margin="15,15,15,15" BackgroundColor="#eeeeee">
         <Grid>
             <Grid.RowDefinitions>
@@ -23,9 +24,9 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Image  Source="image_bokrok.jpg" Grid.RowSpan="4"  Grid.ColumnSpan="5" Aspect="AspectFill" x:Name="image"/>
-            <Label  Margin="20,0,0,0"         Grid.Row="5"      Grid.Column="0"     FontSize="30" Text="Név"/>
-            <Entry  Margin="10,0,20,0"        Grid.Row="5"      Grid.Column="1"     Grid.ColumnSpan="4" x:Name="txtZonaNev" Keyboard="Text" />
+            <Image  Source="image_pi.jpg" Grid.RowSpan="4"  Grid.ColumnSpan="5"  Aspect="AspectFill"/>
+            <Label  Margin="20,0,0,0"         Grid.Row="5"      Grid.Column="0"      FontSize="30" Text="Név"/>
+            <Entry  Margin="10,0,20,0"        Grid.Row="5"      Grid.Column="1"      Grid.ColumnSpan="4" Text="{Binding Nev}" x:Name="txtPiNev" Keyboard="Text" />
         </Grid>
     </StackLayout>
 </ContentPage>

@@ -9,18 +9,19 @@ using Xamarin.Forms.Xaml;
 namespace IrrigationController
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddZona : ContentPage
+    public partial class ZonaAdd : ContentPage
     {
-        public AddZona()
+        public ZonaAdd()
         {
             InitializeComponent();
         }
             
-        public async void OnSaveClicked(object sender, EventArgs args)
+        public async void SaveClicked(object sender, EventArgs args)
         {
             var vZona = new Zona()
             {
-                Nev = txtZonaNev.Text
+                Nev = txtZonaNev.Text,
+                PiId = 2
             };
 
             var response = await App.ZonaService.CreateZonaItemAsync(vZona);
@@ -29,7 +30,7 @@ namespace IrrigationController
                 case Status.SUCCESS:
                     {
                         await Navigation.PopAsync();
-                        await Navigation.PushAsync(new ShowZona(response.Data));
+                        await Navigation.PushAsync(new ZonaShow(response.Data));
                         break;
                     }
                 case Status.OTHER_ERROR:

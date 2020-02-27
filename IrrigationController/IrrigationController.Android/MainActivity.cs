@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using System.Net;
+using Xamarin.Auth;
 
 namespace IrrigationController.Droid
 {
@@ -20,8 +21,13 @@ namespace IrrigationController.Droid
 
             base.OnCreate(savedInstanceState);
 
+            Xamarin.Auth.CustomTabsConfiguration.CustomTabsClosingMessage = null;
+            
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
+
 
             ServicePointManager.ServerCertificateValidationCallback += (o, cert, chain, errors) => true;
 

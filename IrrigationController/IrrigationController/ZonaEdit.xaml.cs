@@ -7,25 +7,25 @@ using Xamarin.Forms.Xaml;
 namespace IrrigationController
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditZona : ContentPage
+    public partial class ZonaEdit : ContentPage
     {
         readonly private Zona mSelZona;
 
-        public EditZona(Zona mSelZona)
+        public ZonaEdit(Zona mSelZona)
         {
             InitializeComponent();
             this.mSelZona = mSelZona;
             BindingContext = mSelZona;
         }
 
-        public async void OnSaveClicked(object sender, EventArgs args)
+        public async void SaveClicked(object sender, EventArgs args)
         {
             var response = await App.ZonaService.EditZonaItemAsync(mSelZona);
             switch (response.Status)
             {
                 case Status.SUCCESS:
                     {
-                        await Navigation.PushAsync(new MainPage());
+                        await Navigation.PopAsync();
                         break;
                     }
                 case Status.OTHER_ERROR:

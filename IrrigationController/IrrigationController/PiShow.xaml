@@ -1,13 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IrrigationController.ShowZona"
-             Title="Zóna adatai">
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="IrrigationController.PiShow">
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="ToolbarItem_EditZona.png"
-                     Clicked="OnEditClicked"/>
-        <ToolbarItem IconImageSource="ToolbarItem_DeleteZona.png"
-                     Clicked="OnDeleteClicked"/>
+        <ToolbarItem IconImageSource="ToolbarItem_Edit.png"
+                     Clicked="EditClicked"/>
+        <ToolbarItem IconImageSource="ToolbarItem_Delete.png"
+                     Clicked="DeleteClicked"/>
     </ContentPage.ToolbarItems>
     <StackLayout Margin="15,15,15,15" BackgroundColor="#eeeeee">
         <Grid>
@@ -21,7 +23,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Image  Source="image_bokrok.jpg" Grid.RowSpan="4"  Grid.ColumnSpan="5"  Aspect="AspectFill"/>
+            <Image  Source="image_pi.jpeg" Grid.RowSpan="4"  Grid.ColumnSpan="5"  Aspect="AspectFill"/>
             <Label Margin="20,0,0,0"  Grid.Row ="5" Grid.Column="0" Text="Név" FontSize="30" />
             <Label Margin="10,0,20,0" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" Text ="{Binding Nev}" FontSize="30" />
         </Grid>

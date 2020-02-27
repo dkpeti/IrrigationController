@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IrrigationController.MainPage"
+             x:Class="IrrigationController.ZonaAll"
              Title="Zónák">
-    
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Zóna hozzáadása"
-            IconImageSource="ToolbarItem_AddZona.png"
-                     Clicked="ToolbarItem_ZonaAddClicked"/>
+            IconImageSource="ToolbarItem_Add.png"
+                     Clicked="ZonaAddClicked"/>
     </ContentPage.ToolbarItems>
-    
+
     <StackLayout  Margin="15,15,15,15">
-        <ListView x:Name="lstData" 
+        <ListView x:Name="ZonaList" 
                   ItemSelected="OnSelection"
                   HasUnevenRows="true"
                   SeparatorVisibility="Default"
@@ -31,7 +31,7 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.RowSpan="4"
                                 Grid.ColumnSpan="4"         
-                                Source="image_bokrok.jpg"
+                                Source="image_bokor.jpg"
                                 Aspect="AspectFill"
                                 HeightRequest="90"
                                 WidthRequest="90" />

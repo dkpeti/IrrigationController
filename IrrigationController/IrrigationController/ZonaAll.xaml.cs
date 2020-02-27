@@ -7,12 +7,11 @@ using Xamarin.Forms;
 
 namespace IrrigationController
 {
-    public partial class MainPage : ContentPage
+    public partial class ZonaAll : ContentPage
     {
-        public MainPage()
+        public ZonaAll()
         {
             InitializeComponent();
-
         }
 
         protected override async void OnAppearing()
@@ -23,12 +22,12 @@ namespace IrrigationController
             {
                 case Status.SUCCESS:
                     {
-                        lstData.ItemsSource = response.Data;
+                        ZonaList.ItemsSource = response.Data;
                         break;
                     }
                 case Status.OTHER_ERROR:
                     {
-                        lstData.ItemsSource = response.Data;
+                        ZonaList.ItemsSource = response.Data;
                         await DisplayAlert("Error", response.StatusString, "Ok");
                         break;
                     }
@@ -42,12 +41,12 @@ namespace IrrigationController
                 return;
             }
             var vSelUser = (Zona)e.SelectedItem;
-            await Navigation.PushAsync(new ShowZona(vSelUser));
-            lstData.SelectedItem = null;
+            await Navigation.PushAsync(new ZonaShow(vSelUser));
+            ZonaList.SelectedItem = null;
         }
-        public async void ToolbarItem_ZonaAddClicked(object sender, EventArgs args)
+        public async void ZonaAddClicked(object sender, EventArgs args)
         {
-            await Navigation.PushAsync(new AddZona());
+            await Navigation.PushAsync(new ZonaAdd());
         }
         void InditasImageTapped(object sender, EventArgs args)
         {

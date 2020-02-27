@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="IrrigationController.PiAll"
+             Title="Pik">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Pi hozzáadása"
+            IconImageSource="ToolbarItem_Add.png"
+                     Clicked="PiAddClicked"/>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout  Margin="15,15,15,15">
+        <ListView x:Name="PiList"
+                  ItemSelected="OnSelection"
+                  HasUnevenRows="true"
+                  SeparatorVisibility="Default"
+                  SelectionMode="Single">
+
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <ViewCell >
+                        <Grid Padding="0,0,0,8">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.RowSpan="4"
+                                Grid.ColumnSpan="4"         
+                                Source="image_pi.jpeg"
+                                Aspect="AspectFill"
+                                HeightRequest="90"
+                                WidthRequest="90" />
+                            <Image Source="icon_inditas.png"
+                                    Grid.Row="4"    
+                                    Grid.Column="0"
+                                    HeightRequest="60"
+                                    WidthRequest="60">
+                            </Image>
+                            <Label Grid.Row="4"
+                                    Grid.Column="2" 
+                                    Text="{Binding Nev}"
+                                    FontAttributes="Bold" FontSize="20"
+                                    VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

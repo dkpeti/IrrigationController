@@ -13,30 +13,52 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="ServiceStack.Interfaces" Version="5.8.0" />
+    <PackageReference Include="Xamarin.Auth" Version="1.7.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="AddZona.xaml.cs">
-      <DependentUpon>AddZona.xaml</DependentUpon>
+    <Compile Update="ZonaAll.xaml.cs">
+      <DependentUpon>ZonaAll.xaml</DependentUpon>
     </Compile>
-    <Compile Update="EditZona.xaml.cs">
-      <DependentUpon>EditZona.xaml</DependentUpon>
+    <Compile Update="ZonaAdd.xaml.cs">
+      <DependentUpon>ZonaAdd.xaml</DependentUpon>
     </Compile>
-    <Compile Update="ShowZona.xaml.cs">
-      <DependentUpon>ShowZona.xaml</DependentUpon>
+    <Compile Update="ZonaEdit.xaml.cs">
+      <DependentUpon>ZonaEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="ZonaShow.xaml.cs">
+      <DependentUpon>ZonaShow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="AddZona.xaml">
+    <EmbeddedResource Update="Fiok.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="EditZona.xaml">
+    <EmbeddedResource Update="PiAll.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ShowZona.xaml">
+    <EmbeddedResource Update="PiEdit.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PiShow.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="TabbedMainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ZonaAdd.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ZonaEdit.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PiAdd.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ZonaShow.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

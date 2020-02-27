@@ -8,16 +8,16 @@ using Xamarin.Forms.Xaml;
 namespace IrrigationController
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ShowZona : ContentPage
+    public partial class ZonaShow : ContentPage
     {
         private readonly int zonaId;
         private Zona zona;
 
-        public ShowZona()
+        public ZonaShow()
         {
             InitializeComponent();
         }
-        public ShowZona(Zona aSelZona)
+        public ZonaShow(Zona aSelZona)
         {
             InitializeComponent();
             zonaId = aSelZona.Id;
@@ -49,13 +49,13 @@ namespace IrrigationController
             }
         }
 
-        public async void OnEditClicked(object sender, EventArgs args)
+        public async void EditClicked(object sender, EventArgs args)
         {
-            await Navigation.PushAsync(new EditZona(zona));
+            await Navigation.PushAsync(new ZonaEdit(zona));
         }
-        public async void OnDeleteClicked(object sender, EventArgs args)
+        public async void DeleteClicked(object sender, EventArgs args)
         {
-            bool accepted = await DisplayAlert("Törlés", "Biztos törli a "+$"{zona.Nev}"+" zónát?", "Igen", "Nem");
+            bool accepted = await DisplayAlert("Törlés", "Biztosan törli a "+$"{zona.Nev}"+" zónát?", "Igen", "Nem");
             if (accepted)
             {
                 var response = await App.ZonaService.DeleteTodoItemAsync(zona);
