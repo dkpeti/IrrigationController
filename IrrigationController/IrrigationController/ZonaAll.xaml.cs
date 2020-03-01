@@ -41,7 +41,7 @@ namespace IrrigationController
                 return;
             }
             var vSelUser = (Zona)e.SelectedItem;
-            await Navigation.PushAsync(new ZonaShow(vSelUser));
+            await Navigation.PushAsync(new ZonaData(vSelUser));
             ZonaList.SelectedItem = null;
         }
         public async void ZonaAddClicked(object sender, EventArgs args)

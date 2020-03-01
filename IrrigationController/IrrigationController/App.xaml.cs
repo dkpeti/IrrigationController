@@ -9,12 +9,15 @@ namespace IrrigationController
     public partial class App : Application
     {
         public static IZonaService ZonaService { get; private set; }
+        public static IPiService PiService { get; private set; }
 
         public App()
         {
             InitializeComponent();
 
             ZonaService = new ZonaRestService();
+
+            PiService = new PiRestService();
 
             MainPage = new NavigationPage(new TabbedMainPage());
         }

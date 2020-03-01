@@ -10,68 +10,65 @@ using System.Threading.Tasks;
 
 namespace IrrigationController.Network
 {
-    class ZonaRestService : IZonaService
+    class PiRestService : IPiService
     {
         private HttpClient _client;
-        public List<Zona> Zonak { get; private set; }
+        public List<Pi> Pik { get; private set; }
 
-        public ZonaRestService()
+        public PiRestService()
         {
             HttpClientHandler clientHandler = new HttpClientHandler();
             clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
 
             _client = new HttpClient(clientHandler);
         }
-
-        public async Task<Response<List<Zona>>> GetAllZonaAsync()
+        public async Task<Response<List<Pi>>> GetAllPiAsync()
         {
-            Zonak = new List<Zona>();
+            Pik = new List<Pi>();
 
-            var uri = new Uri(Network.ZonaGetAllUrl());
+            var uri = new Uri(Network.PiGetAllUrl());
             try
             {
                 var response = await _client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    Zonak = JsonConvert.DeserializeObject<List<Zona>>(content);
-                    return Response.Success(Zonak);
+                    Pik = JsonConvert.DeserializeObject<List<Pi>>(content);
+                    return Response.Success(Pik);
                 }
             }
             catch (Exception ex)
             {
-                return Response.Error(ex.Message, Zonak);
+                return Response.Error(ex.Message, Pik);
             }
-            return Response.Error("", Zonak);
+            return Response.Error("", Pik);
         }
-
-        public async Task<Response<Zona>> GetOneZonaByIdAsync(int id)
+        public async Task<Response<Pi>> GetOnePiByIdAsync(int id)
         {
-            var uri = new Uri(Network.ZonaGetOneUrl(id));
+            var uri = new Uri(Network.PiGetOneUrl(id));
             try
             {
                 var response = await _client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    var zona = JsonConvert.DeserializeObject<Zona>(content);
-                    return Response.Success(zona);
+                    var pi = JsonConvert.DeserializeObject<Pi>(content);
+                    return Response.Success(pi);
                 }
-                else if(response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
-                    return Response.NotFound<Zona>("Nincs ilyen zóna");
+                    return Response.NotFound<Pi>("Nincs ilyen pi");
                 }
             }
             catch (Exception ex)
             {
-                return Response.Error<Zona>(ex.Message);
+                return Response.Error<Pi>(ex.Message);
             }
-            return Response.Error<Zona>("");
+            return Response.Error<Pi>("");
         }
-
-        public async Task<Response<Zona>> CreateZonaItemAsync(Zona item)
+        public async Task<Response<Pi>> CreatePiItemAsync(Pi item)
         {
-            var uri = new Uri(Network.ZonaCreateUrl());
+            var uri = new Uri(Network.PiCreateUrl());
             try
             {
                 var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
@@ -79,21 +76,20 @@ namespace IrrigationController.Network
                 if (response.IsSuccessStatusCode)
                 {
                     var rescontent = await response.Content.ReadAsStringAsync();
-                    var zona = JsonConvert.DeserializeObject<Zona>(rescontent);
-                    return Response.Success(zona);
+                    var pi = JsonConvert.DeserializeObject<Pi>(rescontent);
+                    return Response.Success(pi);
                 }
             }
             catch (Exception ex)
             {
-                return Response.Error<Zona>(ex.Message);
+                return Response.Error<Pi>(ex.Message);
             }
 
-            return Response.Error<Zona>("");
+            return Response.Error<Pi>("");
         }
-
-        public async Task<Response<object>> EditZonaItemAsync(Zona item)
+        public async Task<Response<object>> EditPiItemAsync(Pi item)
         {
-            var uri = new Uri(Network.ZonaEditUrl(item.Id));
+            var uri = new Uri(Network.PiEditUrl(item.Id));
             try
             {
                 var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
@@ -110,10 +106,9 @@ namespace IrrigationController.Network
 
             return Response.Error<object>("");
         }
-
-        public async Task<Response<object>> DeleteTodoItemAsync(Zona item)
+        public async Task<Response<object>> DeleteTodoItemAsync(Pi item)
         {
-            var uri = new Uri(Network.ZonaDeleteUrl(item.Id));
+            var uri = new Uri(Network.PiDeleteUrl(item.Id));
             try
             {
                 var response = await _client.DeleteAsync(uri);
@@ -128,6 +123,6 @@ namespace IrrigationController.Network
             }
 
             return Response.Error<object>("");
-        }
+        } 
     }
 }

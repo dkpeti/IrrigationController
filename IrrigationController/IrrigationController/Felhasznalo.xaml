@@ -4,11 +4,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="IrrigationController.Fiok"
-             Title="Fiók">
-    
-    <ContentPage.Content>
-        <StackLayout>
+             x:Class="IrrigationController.Felhasznalo"
+             Title="Fiók"
+             BackgroundColor="#eeeeee">
+
+        <StackLayout Margin="15,15,15,15" BackgroundColor="White">
             <ImageButton Source="googlelogin.png"
                          VerticalOptions="CenterAndExpand" 
                          HorizontalOptions="CenterAndExpand"
@@ -16,5 +16,4 @@
                          Clicked="LoginClicked"/>
         </StackLayout>
         
-    </ContentPage.Content>
 </ContentPage>

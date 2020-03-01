@@ -14,12 +14,12 @@ using Xamarin.Forms.Xaml;
 namespace IrrigationController
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Fiok : ContentPage
+    public partial class Felhasznalo : ContentPage
     {
 
         OAuth2Authenticator _authenticator;
 
-        public Fiok()
+        public Felhasznalo()
         {
             InitializeComponent();
         }
@@ -97,7 +97,8 @@ namespace IrrigationController
             //We get the JWT Token which we will be used to make authorized request to the API.
             var jwt = await res.Content.ReadAsStringAsync();
             Debug.WriteLine(jwt);
-            await DisplayAlert("Login", jwt, "OK");
+            Debug.WriteLine(jwt, "LOGIN");
+            await DisplayAlert("Login successful ", $"Bearer {jwt}", "OK");
         }
     }
 

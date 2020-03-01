@@ -5,28 +5,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="IrrigationController.PiEdit"
-             Title="Pi szerkesztés">
+             Title="Pi szerkesztés"
+             BackgroundColor="#eeeeee">
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="ToolbarItem_Save.png"
                      Clicked="SaveClicked"/>
     </ContentPage.ToolbarItems>
 
-    <StackLayout Margin="15,15,15,15" BackgroundColor="#eeeeee">
+    <StackLayout Margin="15,15,15,15" BackgroundColor="White">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Image  Source="image_pi.jpg" Grid.RowSpan="4"  Grid.ColumnSpan="5"  Aspect="AspectFill"/>
             <Label  Margin="20,0,0,0"         Grid.Row="5"      Grid.Column="0"      FontSize="30" Text="Név"/>
             <Entry  Margin="10,0,20,0"        Grid.Row="5"      Grid.Column="1"      Grid.ColumnSpan="4" Text="{Binding Nev}" x:Name="txtPiNev" Keyboard="Text" />
+            <Label  Margin="20,0,0,0"         Grid.Row="6"      Grid.Column="0"      FontSize="30" Text="Azonosító"/>
+            <Entry  Margin="10,0,20,0"        Grid.Row="6"      Grid.Column="1"      Grid.ColumnSpan="4" Text="{Binding Azonosito}" x:Name="txtPiAzonosito" Keyboard="Text" />
         </Grid>
     </StackLayout>
 </ContentPage>

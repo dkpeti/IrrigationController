@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IrrigationController.ZonaAdd"
-             Title="Zóna hozzáadása">
+             Title="Zóna hozzáadása"
+             BackgroundColor="#eeeeee">
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Mentés"
@@ -10,22 +11,19 @@
                      Clicked="SaveClicked"/>
     </ContentPage.ToolbarItems>
     
-    <StackLayout Margin="15,15,15,15" BackgroundColor="#eeeeee">
+    <StackLayout Margin="15,15,15,15" BackgroundColor="White">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Image  Source="image_bokor.jpg" Grid.RowSpan="4"  Grid.ColumnSpan="5" Aspect="AspectFill" x:Name="image"/>
             <Label  Margin="20,0,0,0"         Grid.Row="5"      Grid.Column="0"     FontSize="30" Text="Név"/>
-            <Entry  Margin="10,0,20,0"        Grid.Row="5"      Grid.Column="1"     Grid.ColumnSpan="4" x:Name="txtZonaNev" Keyboard="Text" />
+            <Entry  Margin="10,0,20,0"        Grid.Row="5"      Grid.Column="1"     Grid.ColumnSpan="4" x:Name="txtZonaNev" Keyboard="Text"/>
         </Grid>
     </StackLayout>
 </ContentPage>

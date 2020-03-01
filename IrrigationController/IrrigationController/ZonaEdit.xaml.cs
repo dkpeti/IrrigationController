@@ -17,7 +17,7 @@ namespace IrrigationController
             this.mSelZona = mSelZona;
             BindingContext = mSelZona;
         }
-
+        
         public async void SaveClicked(object sender, EventArgs args)
         {
             var response = await App.ZonaService.EditZonaItemAsync(mSelZona);
@@ -33,6 +33,11 @@ namespace IrrigationController
                         await DisplayAlert("Error", response.StatusString, "Ok");
                         break;
                     }
+                    //if (mSelZona.Nev == "")
+                    //{
+                    //    await DisplayAlert("Hiba", "Kérjük írjon be egy nevet", "Ok");
+                    //}
+
             }
         }
     }

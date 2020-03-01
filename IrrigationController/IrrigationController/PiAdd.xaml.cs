@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using IrrigationController.Model;
+using IrrigationController.Service;
+using System;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,9 +15,29 @@ namespace IrrigationController
         {
             InitializeComponent();
         }
-        public void SaveClicked(object sender, EventArgs args)
+        public async void SaveClicked(object sender, EventArgs args)
         {
+            var vPi = new Pi()
+            {
+                Nev = txtPiNev.Text,
+                Azonosito = txtPiAzonosito.Text,
+            };
 
+            var response = await App.PiService.CreatePiItemAsync(vPi);
+            switch (response.Status)
+            {
+                case Status.SUCCESS:
+                    {
+                        await Navigation.PopAsync();
+                        await Navigation.PushAsync(new PiData(response.Data));
+                        break;
+                    }
+                case Status.OTHER_ERROR:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        break;
+                    }
+            }
         }
     }
 }

@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IrrigationController.ZonaAll"
-             Title="Zónák">
+             Title="Zónák"
+             BackgroundColor="#eeeeee">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Zóna hozzáadása"
@@ -15,28 +16,28 @@
                   ItemSelected="OnSelection"
                   HasUnevenRows="true"
                   SeparatorVisibility="Default"
-                  SelectionMode="Single">
+                  SelectionMode="Single"
+                  BackgroundColor="White">
             
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <ViewCell >
                         <Grid Padding="0,0,0,8">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.RowSpan="4"
-                                Grid.ColumnSpan="4"         
+                            <Image Grid.RowSpan="3"
+                                Grid.ColumnSpan="3"         
                                 Source="image_bokor.jpg"
-                                Aspect="AspectFill"
-                                HeightRequest="90"
-                                WidthRequest="90" />
+                                Aspect="AspectFill"/>
                             <Image Source="icon_inditas.png"
-                                    Grid.Row="4"    
+                                    Grid.Row="3"    
                                     Grid.Column="0"
                                     HeightRequest="60"
                                     WidthRequest="60">
@@ -46,8 +47,8 @@
                                         NumberOfTapsRequired="1"/>
                                 </Image.GestureRecognizers>
                             </Image>
-                            <Label Grid.Row="4"
-                                    Grid.Column="2" 
+                            <Label  Grid.Row="3"
+                                    Grid.Column="1" 
                                     Text="{Binding Nev}"
                                     FontAttributes="Bold" FontSize="20"
                                     VerticalTextAlignment="Center"/>

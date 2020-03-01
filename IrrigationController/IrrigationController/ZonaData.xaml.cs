@@ -8,16 +8,16 @@ using Xamarin.Forms.Xaml;
 namespace IrrigationController
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ZonaShow : ContentPage
+    public partial class ZonaData : ContentPage
     {
         private readonly int zonaId;
         private Zona zona;
 
-        public ZonaShow()
+        public ZonaData()
         {
             InitializeComponent();
         }
-        public ZonaShow(Zona aSelZona)
+        public ZonaData(Zona aSelZona)
         {
             InitializeComponent();
             zonaId = aSelZona.Id;

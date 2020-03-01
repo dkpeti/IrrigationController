@@ -1,28 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using IrrigationController.Model;
+using IrrigationController.Service;
+using System;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace IrrigationController
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+
     public partial class PiAll : ContentPage
     {
         public PiAll()
         {
             InitializeComponent();
         }
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
-
+            base.OnAppearing();
+            var response = await App.PiService.GetAllPiAsync();
+            switch (response.Status)
+            {
+                case Status.SUCCESS:
+                    {
+                        PiList.ItemsSource = response.Data;
+                        break;
+                    }
+                case Status.OTHER_ERROR:
+                    {
+                        PiList.ItemsSource = response.Data;
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        break;
+                    }
+            }
         }
-        public void OnSelection(object sender, SelectedItemChangedEventArgs e)
+        public async void OnSelection(object sender, SelectedItemChangedEventArgs e)
         {
-
+            if (e.SelectedItem == null)
+            {
+                return;
+            }
+            var vSelUser = (Pi)e.SelectedItem;
+            await Navigation.PushAsync(new PiData(vSelUser));
+            PiList.SelectedItem = null;
         }
         private async void PiAddClicked(object sender, EventArgs e)
         {

@@ -21,16 +21,16 @@ namespace IrrigationController
             var vZona = new Zona()
             {
                 Nev = txtZonaNev.Text,
-                PiId = 2
+                PiId = 4
             };
-
+            
             var response = await App.ZonaService.CreateZonaItemAsync(vZona);
             switch (response.Status)
             {
                 case Status.SUCCESS:
                     {
                         await Navigation.PopAsync();
-                        await Navigation.PushAsync(new ZonaShow(response.Data));
+                        await Navigation.PushAsync(new ZonaData(response.Data));
                         break;
                     }
                 case Status.OTHER_ERROR:

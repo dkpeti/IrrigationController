@@ -19,6 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Felhasznalo.xaml.cs">
+      <DependentUpon>Felhasznalo.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="PiData.xaml.cs">
+      <DependentUpon>PiData.xaml</DependentUpon>
+    </Compile>
     <Compile Update="ZonaAll.xaml.cs">
       <DependentUpon>ZonaAll.xaml</DependentUpon>
     </Compile>
@@ -28,13 +34,13 @@
     <Compile Update="ZonaEdit.xaml.cs">
       <DependentUpon>ZonaEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Update="ZonaShow.xaml.cs">
-      <DependentUpon>ZonaShow.xaml</DependentUpon>
+    <Compile Update="ZonaData.xaml.cs">
+      <DependentUpon>ZonaData.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Fiok.xaml">
+    <EmbeddedResource Update="Felhasznalo.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="PiAll.xaml">
@@ -43,7 +49,7 @@
     <EmbeddedResource Update="PiEdit.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="PiShow.xaml">
+    <EmbeddedResource Update="PiData.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="TabbedMainPage.xaml">
@@ -58,7 +64,7 @@
     <EmbeddedResource Update="PiAdd.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ZonaShow.xaml">
+    <EmbeddedResource Update="ZonaData.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

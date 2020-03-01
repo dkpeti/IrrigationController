@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="IrrigationController.PiAdd"
-             Title="Pi hozzáadás">
+             Title="Pi hozzáadás"
+             BackgroundColor="#eeeeee">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Mentés"
@@ -13,7 +14,7 @@
                      Clicked="SaveClicked"/>
     </ContentPage.ToolbarItems>
 
-    <StackLayout Margin="15,15,15,15">
+    <StackLayout Margin="15,15,15,15" BackgroundColor="White" >
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -29,6 +30,8 @@
             <Image  Source="image_pi.jpeg" Grid.RowSpan="4"  Grid.ColumnSpan="5" Aspect="AspectFill" x:Name="image"/>
             <Label  Margin="20,0,0,0"         Grid.Row="5"      Grid.Column="0"     FontSize="30" Text="Név"/>
             <Entry  Margin="10,0,20,0"        Grid.Row="5"      Grid.Column="1"     Grid.ColumnSpan="4" x:Name="txtPiNev" Keyboard="Text" />
+            <Label  Margin="20,0,0,0"         Grid.Row="6"      Grid.Column="0"     FontSize="30" Text="Azonosító"/>
+            <Entry  Margin="10,0,20,0"        Grid.Row="6"      Grid.Column="1"     Grid.ColumnSpan="4" x:Name="txtPiAzonosito" Keyboard="Text" />
         </Grid>
     </StackLayout>
 

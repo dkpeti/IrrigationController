@@ -12,6 +12,6 @@
 
     <local:ZonaAll IconImageSource="icon_zonak.png"/>
     <local:PiAll IconImageSource="ToolbarItem_Pi.png"/>
-    <local:Fiok IconImageSource="icon_fiok.png"/>
+    <local:Felhasznalo IconImageSource="icon_fiok.png"/>
 
 </TabbedPage>
