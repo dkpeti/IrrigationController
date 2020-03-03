@@ -7,22 +7,26 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Auth;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace IrrigationController
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Felhasznalo : ContentPage
+    public partial class Bejelentkezes : ContentPage
     {
-
+        public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
         OAuth2Authenticator _authenticator;
 
-        public Felhasznalo()
+        public Bejelentkezes()
         {
             InitializeComponent();
+            BindingContext = this;
         }
+
         public void LoginClicked(object sender, EventArgs args)
         {
             _authenticator = new OAuth2Authenticator(

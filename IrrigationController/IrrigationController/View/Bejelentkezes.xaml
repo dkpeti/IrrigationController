@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="IrrigationController.Bejelentkezes"
+             Title="Fiók"
+             BackgroundColor="#eeeeee">
+
+        <StackLayout Margin="15,15,15,15" BackgroundColor="White">
+        <Label Text="Bejelentkezés"
+               VerticalOptions="CenterAndExpand" 
+               HorizontalOptions="CenterAndExpand"
+               TextColor="Black"
+               FontSize="25"
+               FontAttributes="Bold"/>
+        <ImageButton Source="googlelogin.png"
+                         VerticalOptions="CenterAndExpand" 
+                         HorizontalOptions="CenterAndExpand"
+                         HeightRequest="60"
+                         Clicked="LoginClicked"/>
+        <Label Margin="20" HorizontalOptions="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="A folytatással elfogadja a &#10;"/>
+                    <Span Text="Felhasználási feltételeket."
+                          TextColor="Black"
+                          TextDecorations="Underline">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TapCommand}"
+                                                  CommandParameter="https://docs.microsoft.com/xamarin/" />
+                        </Span.GestureRecognizers>
+                    </Span>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </StackLayout>
+        
+</ContentPage>

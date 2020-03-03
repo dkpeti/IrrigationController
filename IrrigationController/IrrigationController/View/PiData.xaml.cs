@@ -53,7 +53,7 @@ namespace IrrigationController
         }
         public async void DeleteClicked(object sender, EventArgs args)
         {
-            bool accepted = await DisplayAlert("Törlés",$"Biztosan törli a {pi.Nev} nevű és {pi.Azonosito}azonosítójú pit?", "Igen", "Nem");
+            bool accepted = await DisplayAlert("Törlés",$"Biztos törli a(z) {pi.Nev} pit?", "Igen", "Nem");
             if (accepted)
             {
                 var response = await App.PiService.DeleteTodoItemAsync(pi);

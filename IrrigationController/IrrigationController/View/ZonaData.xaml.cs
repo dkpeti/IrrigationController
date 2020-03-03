@@ -55,7 +55,7 @@ namespace IrrigationController
         }
         public async void DeleteClicked(object sender, EventArgs args)
         {
-            bool accepted = await DisplayAlert("Törlés", "Biztosan törli a "+$"{zona.Nev}"+" zónát?", "Igen", "Nem");
+            bool accepted = await DisplayAlert("Törlés", $"Biztos törli a(z) {zona.Nev} zónát?", "Igen", "Nem");
             if (accepted)
             {
                 var response = await App.ZonaService.DeleteTodoItemAsync(zona);

@@ -19,57 +19,53 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Felhasznalo.xaml.cs">
-      <DependentUpon>Felhasznalo.xaml</DependentUpon>
+    <Compile Update="View\Bejelentkezes.xaml.cs">
+      <DependentUpon>Bejelentkezes.xaml</DependentUpon>
     </Compile>
-    <Compile Update="PiData.xaml.cs">
+    <Compile Update="View\PiData.xaml.cs">
       <DependentUpon>PiData.xaml</DependentUpon>
     </Compile>
-    <Compile Update="ZonaAll.xaml.cs">
+    <Compile Update="View\ZonaAll.xaml.cs">
       <DependentUpon>ZonaAll.xaml</DependentUpon>
     </Compile>
-    <Compile Update="ZonaAdd.xaml.cs">
+    <Compile Update="View\ZonaAdd.xaml.cs">
       <DependentUpon>ZonaAdd.xaml</DependentUpon>
     </Compile>
-    <Compile Update="ZonaEdit.xaml.cs">
+    <Compile Update="View\ZonaEdit.xaml.cs">
       <DependentUpon>ZonaEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Update="ZonaData.xaml.cs">
+    <Compile Update="View\ZonaData.xaml.cs">
       <DependentUpon>ZonaData.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Felhasznalo.xaml">
+    <EmbeddedResource Update="View\Bejelentkezes.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="PiAll.xaml">
+    <EmbeddedResource Update="View\PiAll.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="PiEdit.xaml">
+    <EmbeddedResource Update="View\PiEdit.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="PiData.xaml">
+    <EmbeddedResource Update="View\PiData.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="TabbedMainPage.xaml">
+    <EmbeddedResource Update="View\TabbedMainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ZonaAdd.xaml">
+    <EmbeddedResource Update="View\ZonaAdd.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ZonaEdit.xaml">
+    <EmbeddedResource Update="View\ZonaEdit.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="PiAdd.xaml">
+    <EmbeddedResource Update="View\PiAdd.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ZonaData.xaml">
+    <EmbeddedResource Update="View\ZonaData.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="View\" />
   </ItemGroup>
 </Project>
