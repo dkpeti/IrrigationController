@@ -17,7 +17,11 @@
         <Image Margin="0,0,0,20" Source="image_bokor.jpg"/>
         <Label Margin="15,0,0,0"  Text ="Név" FontSize="20"/>
         <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12">
-            <Label  Text ="{Binding Nev}" FontSize="20" TextColor="Black"/>
+            <Label  Text ="{Binding Zona.Nev}" FontSize="22" TextColor="Black"/>
+        </Frame>
+        <Label Margin="15,20,0,0" Text="Pi" FontSize="20"/>
+        <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12">
+            <Label Text="{Binding Pi.Nev}" FontSize="22" TextColor="Black"/>
         </Frame>
     </StackLayout>
 </ContentPage>

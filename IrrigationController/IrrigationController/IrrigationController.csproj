@@ -22,6 +22,9 @@
     <Compile Update="View\Bejelentkezes.xaml.cs">
       <DependentUpon>Bejelentkezes.xaml</DependentUpon>
     </Compile>
+    <Compile Update="View\Profil.xaml.cs">
+      <DependentUpon>Profil.xaml</DependentUpon>
+    </Compile>
     <Compile Update="View\PiData.xaml.cs">
       <DependentUpon>PiData.xaml</DependentUpon>
     </Compile>
@@ -41,6 +44,9 @@
 
   <ItemGroup>
     <EmbeddedResource Update="View\Bejelentkezes.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Profil.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\PiAll.xaml">

@@ -1,4 +1,5 @@
 ﻿using IrrigationController.Model;
+using IrrigationController.View;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -103,6 +104,11 @@ namespace IrrigationController
             Debug.WriteLine(jwt);
             Debug.WriteLine(jwt, "LOGIN");
             await DisplayAlert("Login successful ", $"Bearer {jwt}", "OK");
+        }
+
+        private async void Felhasznalo_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Profil());
         }
     }
 

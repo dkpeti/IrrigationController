@@ -7,14 +7,21 @@
              x:Class="IrrigationController.Bejelentkezes"
              Title="Fiók"
              BackgroundColor="#eeeeee">
-
-        <StackLayout Margin="15,15,15,15" BackgroundColor="White">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="icon_fiok.png"
+                     Clicked="Felhasznalo_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <StackLayout Margin="15,15,15,15" BackgroundColor="White">
+        <Image Source="xamarinlogo.png"
+               VerticalOptions="Start" 
+               HorizontalOptions="CenterAndExpand"
+               Margin="100,20,100,0"/>
         <Label Text="Bejelentkezés"
-               VerticalOptions="CenterAndExpand" 
+               VerticalOptions="Start" 
                HorizontalOptions="CenterAndExpand"
                TextColor="Black"
                FontSize="25"
-               FontAttributes="Bold"/>
+               Margin="20"/>
         <ImageButton Source="googlelogin.png"
                          VerticalOptions="CenterAndExpand" 
                          HorizontalOptions="CenterAndExpand"

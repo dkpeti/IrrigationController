@@ -16,12 +16,12 @@
     <StackLayout Margin="15,15,15,15" BackgroundColor="White">
         <Image Margin="0,0,0,20" Source="image_pi.jpeg"/>
         <Label Margin="15,0,0,0" Text="Név" FontSize="20" />
-        <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12">
-            <Label x:Name="lb_Nev"  Text ="{Binding Nev}" FontSize="20" TextColor="Black"/>
+        <Frame Margin="15,0,15,0"  BorderColor="Gray" HasShadow="False" Padding="12">
+            <Label x:Name="lb_Nev"  Text ="{Binding Nev}" FontSize="22" TextColor="Black"/>
         </Frame>
         <Label Margin="15,20,0,0" Text="Azonosító" FontSize="20"/>
         <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12">
-            <Label x:Name="lb_Azonosito" Text ="{Binding Azonosito}" FontSize="20" TextColor="Black"/>
+            <Label x:Name="lb_Azonosito" Text ="{Binding Azonosito}" FontSize="22" TextColor="Black"/>
         </Frame>
     </StackLayout>
 </ContentPage>

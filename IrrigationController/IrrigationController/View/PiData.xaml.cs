@@ -1,4 +1,5 @@
 ﻿using IrrigationController.Model;
+using IrrigationController.Network;
 using IrrigationController.Service;
 using System;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace IrrigationController
         public PiData()
         {
             InitializeComponent();
+            BindingContext = new Pi();
         }
         public PiData(Pi aSelPi)
         {

@@ -2,6 +2,7 @@
 using IrrigationController.Service;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,6 +13,7 @@ namespace IrrigationController
     {
         private readonly int zonaId;
         private Zona zona;
+        private Pi pi;
 
         public ZonaData()
         {
@@ -26,27 +28,17 @@ namespace IrrigationController
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            var response = await App.ZonaService.GetOneZonaByIdAsync(zonaId);
-            switch (response.Status)
+            zona = await GetZona(zonaId);
+            if (zona == null) return;
+            
+            pi = await GetPi(zona.PiId);
+            if (pi == null) return;
+
+            BindingContext = new
             {
-                case Status.SUCCESS:
-                    {
-                        zona = response.Data;
-                        BindingContext = response.Data;
-                        break;
-                    }
-                case Status.NOT_FOUND:
-                    {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
-                        await Navigation.PopAsync();
-                        break;
-                    }
-                case Status.OTHER_ERROR:
-                    {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
-                        break;
-                    }
-            }
+                Zona = zona,
+                Pi = pi
+            };
         }
 
         public async void EditClicked(object sender, EventArgs args)
@@ -73,6 +65,54 @@ namespace IrrigationController
                         }
                 }
             }
+        }
+
+        private async Task<Zona> GetZona(int zonaId)
+        {
+            var response = await App.ZonaService.GetOneZonaByIdAsync(zonaId);
+            switch (response.Status)
+            {
+                case Status.SUCCESS:
+                    {
+                        return response.Data;
+                    }
+                case Status.NOT_FOUND:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await Navigation.PopAsync();
+                        return null;
+                    }
+                case Status.OTHER_ERROR:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        return null;
+                    }
+            }
+            return null;
+        }
+
+        private async Task<Pi> GetPi(int piId)
+        {
+            var response = await App.PiService.GetOnePiByIdAsync(piId);
+            switch (response.Status)
+            {
+                case Status.SUCCESS:
+                    {
+                        return response.Data;
+                    }
+                case Status.NOT_FOUND:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await Navigation.PopAsync();
+                        return null;
+                    }
+                case Status.OTHER_ERROR:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        return null;
+                    }
+            }
+            return null;
         }
     }
 }

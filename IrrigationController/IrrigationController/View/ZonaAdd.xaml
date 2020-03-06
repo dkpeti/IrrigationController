@@ -14,6 +14,9 @@
     <StackLayout Margin="15,15,15,15" BackgroundColor="White">
         <Image Margin="0,0,0,20"  Source="image_bokor.jpg"  x:Name="image"/>
         <Label Margin="20,0,0,0"  Text ="Név" FontSize="20"/>
-        <Entry Margin="17,0,17,0" x:Name="txtZonaNev" Keyboard="Text" FontSize="25"/>
+        <Entry Margin="17,0,17,0" BackgroundColor="#f0f0f0" x:Name="txtZonaNev" Keyboard="Text" FontSize="22"/>
+        <Label  Margin="20,20,0,0" FontSize="20" Text="Pi"/>
+        <Picker Margin="17,0,17,0" x:Name="PiPicker" BackgroundColor="#f0f0f0" Title="Pi választása" FontSize="22"
+                ItemsSource="{Binding Pis}" ItemDisplayBinding="{Binding Nev}" SelectedItem="{Binding SelPi}"/>
     </StackLayout>
 </ContentPage>
