@@ -34,6 +34,17 @@ namespace IrrigationController
 
         public async void SaveClicked(object sender, EventArgs args)
         {
+            if (String.IsNullOrEmpty(txtZonaNev.Text))
+            {
+                await DisplayAlert("Error", "Név ne legyen üres!", "Ok");
+                return;
+            }
+            else if (SelPi == null)
+            {
+                await DisplayAlert("Error", "Pi nem lehet üres!", "Ok");
+                return;
+            }
+
             Zona.PiId = SelPi.Id;
             var response = await App.ZonaService.EditZonaItemAsync(Zona);
             switch (response.Status)
@@ -48,11 +59,6 @@ namespace IrrigationController
                         await DisplayAlert("Error", response.StatusString, "Ok");
                         break;
                     }
-                    //if (mSelZona.Nev == "")
-                    //{
-                    //    await DisplayAlert("Hiba", "Kérjük írjon be egy nevet", "Ok");
-                    //}
-
             }
         }
 

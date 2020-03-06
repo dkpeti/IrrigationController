@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace IrrigationController.View
+namespace IrrigationController
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Profil : ContentPage

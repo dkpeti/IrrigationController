@@ -34,7 +34,7 @@ namespace IrrigationController
 
         public async void SaveClicked(object sender, EventArgs args)
         {
-            if (txtZonaNev.Text == "")
+            if (String.IsNullOrEmpty(txtZonaNev.Text))
             {
                 await DisplayAlert("Error", "Név ne legyen üres!", "Ok");
                 return;

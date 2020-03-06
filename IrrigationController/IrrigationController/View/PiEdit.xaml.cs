@@ -18,6 +18,16 @@ namespace IrrigationController
         }
         public async void SaveClicked(object sender, EventArgs args)
         {
+            if (String.IsNullOrEmpty(txtPiNev.Text))
+            {
+                await DisplayAlert("Error", "Név ne legyen üres!", "Ok");
+                return;
+            }
+            else if (String.IsNullOrEmpty(txtPiAzonosito.Text))
+            {
+                await DisplayAlert("Error", "Azonosító nem lehet üres!", "Ok");
+                return;
+            }
             var response = await App.PiService.EditPiItemAsync(mSelPi);
             switch (response.Status)
             {
@@ -31,11 +41,6 @@ namespace IrrigationController
                         await DisplayAlert("Error", response.StatusString, "Ok");
                         break;
                     }
-                    //if (mSelZona.Nev == "")
-                    //{
-                    //    await DisplayAlert("Hiba", "Kérjük írjon be egy nevet", "Ok");
-                    //}
-
             }
         }
     }

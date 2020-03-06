@@ -12,25 +12,22 @@ namespace IrrigationController.Network
 {
     class ZonaRestService : IZonaService
     {
-        private HttpClient _client;
+        private HttpAPI _httpAPI;
         public List<Zona> Zonak { get; private set; }
 
-        public ZonaRestService()
+        public ZonaRestService(HttpAPI httpAPI)
         {
-            HttpClientHandler clientHandler = new HttpClientHandler();
-            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
-
-            _client = new HttpClient(clientHandler);
+            this._httpAPI = httpAPI;
         }
 
         public async Task<Response<List<Zona>>> GetAllZonaAsync()
         {
             Zonak = new List<Zona>();
 
-            var uri = new Uri(Network.ZonaGetAllUrl());
+            var uri = new Uri(_httpAPI.ZonaGetAllUrl());
             try
             {
-                var response = await _client.GetAsync(uri);
+                var response = await _httpAPI.HttpClient.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
@@ -47,10 +44,10 @@ namespace IrrigationController.Network
 
         public async Task<Response<Zona>> GetOneZonaByIdAsync(int id)
         {
-            var uri = new Uri(Network.ZonaGetOneUrl(id));
+            var uri = new Uri(_httpAPI.ZonaGetOneUrl(id));
             try
             {
-                var response = await _client.GetAsync(uri);
+                var response = await _httpAPI.HttpClient.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
@@ -71,11 +68,11 @@ namespace IrrigationController.Network
 
         public async Task<Response<Zona>> CreateZonaItemAsync(Zona item)
         {
-            var uri = new Uri(Network.ZonaCreateUrl());
+            var uri = new Uri(_httpAPI.ZonaCreateUrl());
             try
             {
                 var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
-                var response = await _client.PostAsync(uri, content);
+                var response = await _httpAPI.HttpClient.PostAsync(uri, content);
                 if (response.IsSuccessStatusCode)
                 {
                     var rescontent = await response.Content.ReadAsStringAsync();
@@ -93,11 +90,11 @@ namespace IrrigationController.Network
 
         public async Task<Response<object>> EditZonaItemAsync(Zona item)
         {
-            var uri = new Uri(Network.ZonaEditUrl(item.Id));
+            var uri = new Uri(_httpAPI.ZonaEditUrl(item.Id));
             try
             {
                 var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
-                var response = await _client.PutAsync(uri, content);
+                var response = await _httpAPI.HttpClient.PutAsync(uri, content);
                 if (response.IsSuccessStatusCode)
                 {
                     return Response.Success<object>(null);
@@ -113,10 +110,10 @@ namespace IrrigationController.Network
 
         public async Task<Response<object>> DeleteTodoItemAsync(Zona item)
         {
-            var uri = new Uri(Network.ZonaDeleteUrl(item.Id));
+            var uri = new Uri(_httpAPI.ZonaDeleteUrl(item.Id));
             try
             {
-                var response = await _client.DeleteAsync(uri);
+                var response = await _httpAPI.HttpClient.DeleteAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
                     return Response.Success<object>(null);

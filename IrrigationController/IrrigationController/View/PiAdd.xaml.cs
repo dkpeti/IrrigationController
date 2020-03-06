@@ -17,6 +17,17 @@ namespace IrrigationController
         }
         public async void SaveClicked(object sender, EventArgs args)
         {
+            if (String.IsNullOrEmpty(txtPiNev.Text))
+            {
+                await DisplayAlert("Error", "Név ne legyen üres!", "Ok");
+                return;
+            }
+            else if (String.IsNullOrEmpty(txtPiAzonosito.Text))
+            {
+                await DisplayAlert("Error", "Azonosító nem lehet üres!", "Ok");
+                return;
+            }
+
             var vPi = new Pi()
             {
                 Nev = txtPiNev.Text,
