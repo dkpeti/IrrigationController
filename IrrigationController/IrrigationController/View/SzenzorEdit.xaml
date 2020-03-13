@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="IrrigationController.SzenzorEdit"
+             Title="Szenzor szerkesztés"
+             BackgroundColor="#eeeeee">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="ToolbarItem_Save.png"
+                     Clicked="SaveClicked"/>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Margin="15,15,15,15" BackgroundColor="White">
+        <Label Margin="20,0,0,0" FontSize="20" Text="Név"/>
+        <Entry Margin="17,0,17,0" x:Name="txtSzenzorNev" BackgroundColor="#f0f0f0" Text="{}" Keyboard="Text" FontSize="22" />
+        <Label Margin="20,0,0,0" FontSize="20" Text="Típus"/>
+        <Entry Margin="17,0,17,0" x:Name="txtSzenzorTipus" BackgroundColor="#f0f0f0" Text="{}" Keyboard="Text" FontSize="22" />
+        <Label Margin="20,0,0,0" FontSize="20" Text="Megjegyzes"/>
+        <Entry Margin="17,0,17,0" x:Name="txtSzenzorMegjegyzes" BackgroundColor="#f0f0f0" Text="{}" Keyboard="Text" FontSize="22" />
+    </StackLayout>
+</ContentPage>

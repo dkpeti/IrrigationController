@@ -13,7 +13,7 @@ namespace IrrigationController.Network
     class PiRestService : IPiService
     {
         private HttpAPI _httpAPI;
-        public List<Pi> Pik { get; private set; }
+        private List<Pi> Pik { get; set; }
 
         public PiRestService(HttpAPI httpAPI)
         {

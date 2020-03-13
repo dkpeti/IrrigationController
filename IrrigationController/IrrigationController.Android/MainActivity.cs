@@ -22,12 +22,12 @@ namespace IrrigationController.Droid
             base.OnCreate(savedInstanceState);
 
             Xamarin.Auth.CustomTabsConfiguration.CustomTabsClosingMessage = null;
-            
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
 
+            XamEffects.Droid.Effects.Init();
 
             ServicePointManager.ServerCertificateValidationCallback += (o, cert, chain, errors) => true;
 

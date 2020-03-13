@@ -109,6 +109,7 @@ namespace IrrigationController.Network
             var res = await _httpAPI.HttpClient.PostAsync(_httpAPI.GoogleLoginUrl(), content);
 
             var jwt = await res.Content.ReadAsStringAsync();
+            Debug.WriteLine($"Token: Bearer {jwt}");
             return jwt;
         }
 

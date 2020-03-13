@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-           
-             
-             
+             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
              x:Class="IrrigationController.ZonaData"
+             x:Name="ZonaDataPage"
              Title="Zóna adatai"
              BackgroundColor="#eeeeee">
     <ContentPage.ToolbarItems>
@@ -13,15 +12,36 @@
         <ToolbarItem IconImageSource="ToolbarItem_Delete.png"
                      Clicked="DeleteClicked"/>
     </ContentPage.ToolbarItems>
-    <StackLayout Margin="15,15,15,15" BackgroundColor="White">
-        <Image Margin="0,0,0,20" Source="image_bokor.jpg"/>
-        <Label Margin="15,0,0,0"  Text ="Név" FontSize="20"/>
-        <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12">
-            <Label  Text ="{Binding Zona.Nev}" FontSize="22" TextColor="Black"/>
-        </Frame>
-        <Label Margin="15,20,0,0" Text="Pi" FontSize="20"/>
-        <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12">
-            <Label Text="{Binding Pi.Nev}" FontSize="22" TextColor="Black"/>
-        </Frame>
-    </StackLayout>
+    <ContentPage.Content>
+        <ScrollView Margin="15,15,15,15">
+            <StackLayout  BackgroundColor="White">
+                <Image Margin="0,0,0,20" Source="image_bokor.jpg"/>
+                <Label Margin="15,0,0,0"  Text ="Név" FontSize="20"/>
+                <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12">
+                    <Label  Text ="{Binding Zona.Nev}" FontSize="22" TextColor="Black"/>
+                </Frame>
+                <Label Margin="15,20,0,0" Text="Pi" FontSize="20"/>
+                <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12">
+                    <Label Text="{Binding Pi.Nev}" FontSize="22" TextColor="Black"/>
+                </Frame>
+                <Label Margin="15,20,0,0" Text="Hozzá tartozó szenzorok" FontSize="20"/>
+                <Frame Margin="15,0,15,15" BorderColor="Gray" HasShadow="False" Padding="12">
+                    <StackLayout x:Name="OfferList" BindableLayout.ItemsSource="{Binding Szenzorok}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Center" 
+                                    Margin="0" Padding="0,0,0,0"
+                                    xe:TouchEffect.Color="Gray"
+                                    xe:Commands.Tap="{Binding Source={x:Reference ZonaDataPage}, Path=BindingContext.SzenzorTappedCommand}"
+                                    xe:Commands.TapParameter="{Binding .}">
+                                    <Label Text="{Binding Nev}" Padding="10,10,10,10" FontSize="22" TextColor="Black"
+                                           HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

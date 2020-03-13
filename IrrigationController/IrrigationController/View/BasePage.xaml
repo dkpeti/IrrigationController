@@ -18,10 +18,10 @@
                    AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
             </Frame>
             <Frame IsVisible="{Binding Source={x:Reference ContentPage},Path=IsBusy}"
-                   BackgroundColor="Black" CornerRadius="5" HasShadow="True" IsClippedToBounds="True" Padding="12"
+                   BackgroundColor="White" HasShadow="True" IsClippedToBounds="True" Padding="20" WidthRequest="100"
                    VerticalOptions="Center" HorizontalOptions="Center"
                    AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
-                <ActivityIndicator IsRunning="{Binding Source={x:Reference ContentPage},Path=IsBusy}" Color ="Red" />
+                <ActivityIndicator IsRunning="{Binding Source={x:Reference ContentPage},Path=IsBusy}" Color ="#2196F3" />
             </Frame>
             
         </AbsoluteLayout>

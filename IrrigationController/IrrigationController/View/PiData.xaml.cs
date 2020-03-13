@@ -74,5 +74,20 @@ namespace IrrigationController
                 }
             }
         }
+
+        //listában a ha rákattintok valamelyik zónára
+        private async void ZonaTapped(object sender, SelectedItemChangedEventArgs e)
+        {
+            var vSelZona = (Zona)e.SelectedItem;
+            await Navigation.PushAsync(new ZonaData(vSelZona));
+        }
+
+        //listában a ha rákattintok valamelyik szenzorra
+
+        private async void SzenzorTapped(object sender, SelectedItemChangedEventArgs e)
+        {
+            var vSelSzenzor = (Szenzor)e.SelectedItem;
+            await Navigation.PushAsync(new SzenzorData(null));
+        }
     }
 }

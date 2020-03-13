@@ -1,6 +1,7 @@
 ﻿using IrrigationController.Model;
 using IrrigationController.Service;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -14,6 +15,7 @@ namespace IrrigationController
         private readonly int zonaId;
         private Zona zona;
         private Pi pi;
+        private List<Szenzor> szenzorok;
 
         public ZonaData()
         {
@@ -34,13 +36,19 @@ namespace IrrigationController
             pi = await GetPi(zona.PiId);
             if (pi == null) return;
 
+            szenzorok = await GetSzenzorok(zonaId);
+            if (szenzorok == null) return;
+
             BindingContext = new
             {
                 Zona = zona,
-                Pi = pi
+                Pi = pi,
+                Szenzorok = szenzorok,
+                SzenzorTappedCommand = new Command<Szenzor>(SzenzorokTapped)
             };
         }
 
+        //szerkesztés átnavigál
         public async void EditClicked(object sender, EventArgs args)
         {
             await Navigation.PushAsync(new ZonaEdit(zona));
@@ -113,6 +121,36 @@ namespace IrrigationController
                     }
             }
             return null;
+        }
+
+        private async Task<List<Szenzor>> GetSzenzorok(int zonaId)
+        {
+            var response = await App.SzenzorService.GetAllSzenzorByZonaIdAsync(zonaId);
+            switch (response.Status)
+            {
+                case Status.SUCCESS:
+                    {
+                        return response.Data;
+                    }
+                case Status.NOT_FOUND:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await Navigation.PopAsync();
+                        return null;
+                    }
+                case Status.OTHER_ERROR:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        return null;
+                    }
+            }
+            return null;
+        }
+
+        private async void SzenzorokTapped(Szenzor szenzor)
+        {
+            //var vSelSzenzor = szenzor;
+            //await Navigation.PushAsync(new SzenzorData());
         }
     }
 }

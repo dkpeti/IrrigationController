@@ -26,6 +26,8 @@ namespace IrrigationController.Network
         public string ZonaEditUrl(int id) => $"{ServerUrl}/zona/{id}";
         public string ZonaDeleteUrl(int id) => $"{ServerUrl}/zona/{id}";
 
+        public string SzenzorGetAllByZonaIdUrl(int zonaId) => $"{ServerUrl}/szenzor?zonaId={zonaId}";
+
 
         private string _authToken;
         public HttpClient HttpClient { get; private set; }
