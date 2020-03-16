@@ -16,7 +16,9 @@ namespace IrrigationController
         {
             InitializeComponent();
             BindingContext = this;
-            IsBusy = false; 
+            IsBusy = false;
+            //a toolbar elrejtése
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         public void LoginClicked(object sender, EventArgs args)
