@@ -25,13 +25,12 @@
                     <Label Text="{Binding Pi.Nev}" FontSize="22" TextColor="Black"/>
                 </Frame>
                 <Label Margin="15,20,0,0" Text="Hozzá tartozó szenzorok" FontSize="20"/>
-                <Frame Margin="15,0,15,15" BorderColor="Gray" HasShadow="False" Padding="12">
-                    <StackLayout x:Name="OfferList" BindableLayout.ItemsSource="{Binding Szenzorok}">
+                <Frame Margin="15,0,15,15" BorderColor="Gray" HasShadow="False" Padding="5">
+                    <StackLayout BindableLayout.ItemsSource="{Binding Szenzorok}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Center" 
-                                    Margin="0" Padding="0,0,0,0"
-                                    xe:TouchEffect.Color="Gray"
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+                                    xe:TouchEffect.Color="#e0e0e0"
                                     xe:Commands.Tap="{Binding Source={x:Reference ZonaDataPage}, Path=BindingContext.SzenzorTappedCommand}"
                                     xe:Commands.TapParameter="{Binding .}">
                                     <Label Text="{Binding Nev}" Padding="10,10,10,10" FontSize="22" TextColor="Black"

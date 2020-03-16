@@ -21,12 +21,14 @@ namespace IrrigationController.Network
         public string PiDeleteUrl(int id) => $"{ServerUrl}/pi/{id}";
                
         public string ZonaGetAllUrl() => $"{ServerUrl}/zona";
+        public string ZonaGetAllByPiIdUrl(int piId) => $"{ServerUrl}/zona?piId={piId}";
         public string ZonaGetOneUrl(int id) => $"{ServerUrl}/zona/{id}";
         public string ZonaCreateUrl() => $"{ServerUrl}/zona";
         public string ZonaEditUrl(int id) => $"{ServerUrl}/zona/{id}";
         public string ZonaDeleteUrl(int id) => $"{ServerUrl}/zona/{id}";
 
         public string SzenzorGetAllByZonaIdUrl(int zonaId) => $"{ServerUrl}/szenzor?zonaId={zonaId}";
+        public string SzenzorGetAllByPiIdUrl(int piId) => $"{ServerUrl}/szenzor?piId={piId}";
 
 
         private string _authToken;

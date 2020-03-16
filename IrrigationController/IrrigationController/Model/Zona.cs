@@ -9,5 +9,6 @@ namespace IrrigationController.Model
         public int Id { get; set; }
         public string Nev { get; set; }
         public int PiId { get; set; }
+        public int[] SzenzorLista { get; set; }
     }
 }

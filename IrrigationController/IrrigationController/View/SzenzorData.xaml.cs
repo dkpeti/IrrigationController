@@ -24,7 +24,7 @@ namespace IrrigationController
         {
             InitializeComponent();
         }
-        public SzenzorData(Zona aSelSzenzor)
+        public SzenzorData(Szenzor aSelSzenzor)
         {
             InitializeComponent();
             szenzorId = aSelSzenzor.Id;

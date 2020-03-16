@@ -33,6 +33,28 @@ namespace IrrigationController.Network
             throw new NotImplementedException();
         }
 
+        public async Task<Response<List<Szenzor>>> GetAllSzenzorByPiIdAsync(int piId)
+        {
+            Szenzorok = new List<Szenzor>();
+
+            var uri = new Uri(_httpAPI.SzenzorGetAllByPiIdUrl(piId));
+            try
+            {
+                var response = await _httpAPI.HttpClient.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    Szenzorok = JsonConvert.DeserializeObject<List<Szenzor>>(content);
+                    return Response.Success(Szenzorok);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Response.Error(ex.Message, Szenzorok);
+            }
+            return Response.Error("", Szenzorok);
+        }
+
         public async Task<Response<List<Szenzor>>> GetAllSzenzorByZonaIdAsync(int zonaId)
         {
             Szenzorok = new List<Szenzor>();

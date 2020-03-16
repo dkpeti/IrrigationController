@@ -16,7 +16,7 @@ namespace IrrigationController
         {
             InitializeComponent();
             BindingContext = this;
-            IsBusy = false;
+            IsBusy = false; 
         }
 
         public void LoginClicked(object sender, EventArgs args)

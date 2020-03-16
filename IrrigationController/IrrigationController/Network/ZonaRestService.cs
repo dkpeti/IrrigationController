@@ -42,6 +42,28 @@ namespace IrrigationController.Network
             return Response.Error("", Zonak);
         }
 
+        public async Task<Response<List<Zona>>> GetAllZonaByPiIdAsync(int piId)
+        {
+            Zonak = new List<Zona>();
+
+            var uri = new Uri(_httpAPI.ZonaGetAllByPiIdUrl(piId));
+            try
+            {
+                var response = await _httpAPI.HttpClient.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    Zonak = JsonConvert.DeserializeObject<List<Zona>>(content);
+                    return Response.Success(Zonak);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Response.Error(ex.Message, Zonak);
+            }
+            return Response.Error("", Zonak);
+        }
+
         public async Task<Response<Zona>> GetOneZonaByIdAsync(int id)
         {
             var uri = new Uri(_httpAPI.ZonaGetOneUrl(id));

@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
              mc:Ignorable="d"
              x:Class="IrrigationController.PiData"
              Title="Pi adatai"
+             x:Name="PiDataPage"
              BackgroundColor="#eeeeee">
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="ToolbarItem_Edit.png"
@@ -13,29 +15,49 @@
         <ToolbarItem IconImageSource="ToolbarItem_Delete.png"
                      Clicked="DeleteClicked"/>
     </ContentPage.ToolbarItems>
-    <ContentPage.Content>
-    <ScrollView>
-        <StackLayout Margin="15,15,15,15" BackgroundColor="White">
+    <ScrollView Margin="15,15,15,15">
+        <StackLayout  BackgroundColor="White">
             <Image Margin="0,0,0,20" Source="image_pi.jpeg"/>
             <Label Margin="15,0,0,0" Text="Név" FontSize="20" />
             <Frame Margin="15,0,15,0"  BorderColor="Gray" HasShadow="False" Padding="12">
-                <Label x:Name="lb_Nev"  Text ="{Binding Nev}" FontSize="22" TextColor="Black"/>
+                <Label x:Name="lb_Nev"  Text ="{Binding Pi.Nev}" FontSize="22" TextColor="Black"/>
             </Frame>
             <Label Margin="15,20,0,0" Text="Azonosító" FontSize="20"/>
             <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12">
-                <Label x:Name="lb_Azonosito" Text ="{Binding Azonosito}" FontSize="22" TextColor="Black"/>
+                <Label x:Name="lb_Azonosito" Text ="{Binding Pi.Azonosito}" FontSize="22" TextColor="Black"/>
             </Frame>
             <Label Margin="15,20,0,0" Text="Hozzá tartozó zónák" FontSize="20"/>
-            <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12" HeightRequest="130">
-                    <ListView ItemsSource="{Binding Azonosito}"
-                              ItemSelected="ZonaTapped"/>
+            <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="5">
+                <StackLayout BindableLayout.ItemsSource="{Binding Zonak}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+                                    xe:TouchEffect.Color="#e0e0e0"
+                                    xe:Commands.Tap="{Binding Source={x:Reference PiDataPage}, Path=BindingContext.ZonaTappedCommand}"
+                                    xe:Commands.TapParameter="{Binding .}">
+                                <Label Text="{Binding Nev}" Padding="10,10,10,10" FontSize="22" TextColor="Black"
+                                           HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
             </Frame>
             <Label Margin="15,20,0,0" Text="Hozzá tartozó szenzorok" FontSize="20"/>
-            <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12" HeightRequest="130">
-                <ListView ItemsSource="{Binding Azonosito}"
-                          ItemSelected="SzenzorTapped"/>
+            <Frame Margin="15,0,15,15" BorderColor="Gray" HasShadow="False" Padding="5">
+                <StackLayout BindableLayout.ItemsSource="{Binding Szenzorok}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+                                    xe:TouchEffect.Color="#e0e0e0"
+                                    xe:Commands.Tap="{Binding Source={x:Reference PiDataPage}, Path=BindingContext.SzenzorTappedCommand}"
+                                    xe:Commands.TapParameter="{Binding .}">
+                                <Label Text="{Binding Nev}" Padding="10,10,10,10" FontSize="22" TextColor="Black"
+                                           HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
             </Frame>
         </StackLayout>
     </ScrollView>
-    </ContentPage.Content>
 </ContentPage>

@@ -2,7 +2,9 @@
 using IrrigationController.Network;
 using IrrigationController.Service;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,6 +16,9 @@ namespace IrrigationController
     {
         private readonly int piId;
         private Pi pi;
+        private List<Zona> zonak;
+        private List<Szenzor> szenzorok;
+
         public PiData()
         {
             InitializeComponent();
@@ -22,32 +27,30 @@ namespace IrrigationController
         public PiData(Pi aSelPi)
         {
             InitializeComponent();
+            pi = aSelPi;
             piId = aSelPi.Id;
         }
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            var response = await App.PiService.GetOnePiByIdAsync(piId);
-            switch (response.Status)
+
+            pi = await GetPi(pi.Id);
+            if (pi == null) return;
+
+            zonak = await GetZonakByPi(pi.Id);
+            if (zonak == null) return;
+
+            szenzorok = await GetSzenzorokByPiId(pi.Id);
+            if (szenzorok == null) return;
+
+            BindingContext = new
             {
-                case Status.SUCCESS:
-                    {
-                        pi = response.Data;
-                        BindingContext = response.Data;
-                        break;
-                    }
-                case Status.NOT_FOUND:
-                    {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
-                        await Navigation.PopAsync();
-                        break;
-                    }
-                case Status.OTHER_ERROR:
-                    {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
-                        break;
-                    }
-            }
+                Pi = pi,
+                Zonak = zonak,
+                ZonaTappedCommand = new Command<Zona>(ZonaTapped),
+                Szenzorok = szenzorok,
+                SzenzorTappedCommand = new Command<Szenzor>(SzenzorTapped)
+            };
         }
         public async void EditClicked(object sender, EventArgs args)
         {
@@ -75,19 +78,89 @@ namespace IrrigationController
             }
         }
 
-        //listában a ha rákattintok valamelyik zónára
-        private async void ZonaTapped(object sender, SelectedItemChangedEventArgs e)
+        private async Task<Pi> GetPi(int piId)
         {
-            var vSelZona = (Zona)e.SelectedItem;
-            await Navigation.PushAsync(new ZonaData(vSelZona));
+            var response = await App.PiService.GetOnePiByIdAsync(piId);
+            switch (response.Status)
+            {
+                case Status.SUCCESS:
+                    {
+                        return response.Data;
+                    }
+                case Status.NOT_FOUND:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await Navigation.PopAsync();
+                        return null;
+                    }
+                case Status.OTHER_ERROR:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        return null;
+                    }
+            }
+            return null;
+        }
+
+        private async Task<List<Zona>> GetZonakByPi(int piId)
+        {
+            var response = await App.ZonaService.GetAllZonaByPiIdAsync(piId);
+            switch (response.Status)
+            {
+                case Status.SUCCESS:
+                    {
+                        return response.Data;
+                    }
+                case Status.NOT_FOUND:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await Navigation.PopAsync();
+                        return null;
+                    }
+                case Status.OTHER_ERROR:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        return null;
+                    }
+            }
+            return null;
+        }
+
+        private async Task<List<Szenzor>> GetSzenzorokByPiId(int piId)
+        {
+            var response = await App.SzenzorService.GetAllSzenzorByPiIdAsync(piId);
+            switch (response.Status)
+            {
+                case Status.SUCCESS:
+                    {
+                        return response.Data;
+                    }
+                case Status.NOT_FOUND:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await Navigation.PopAsync();
+                        return null;
+                    }
+                case Status.OTHER_ERROR:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        return null;
+                    }
+            }
+            return null;
+        }
+
+        //listában a ha rákattintok valamelyik zónára
+        private async void ZonaTapped(Zona zona)
+        {
+            await Navigation.PushAsync(new ZonaData(zona));
         }
 
         //listában a ha rákattintok valamelyik szenzorra
 
-        private async void SzenzorTapped(object sender, SelectedItemChangedEventArgs e)
+        private async void SzenzorTapped(Szenzor szenzor)
         {
-            var vSelSzenzor = (Szenzor)e.SelectedItem;
-            await Navigation.PushAsync(new SzenzorData(null));
+            await Navigation.PushAsync(new SzenzorData(szenzor));
         }
     }
 }

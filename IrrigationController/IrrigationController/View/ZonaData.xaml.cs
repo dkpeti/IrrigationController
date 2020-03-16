@@ -149,8 +149,7 @@ namespace IrrigationController
 
         private async void SzenzorokTapped(Szenzor szenzor)
         {
-            //var vSelSzenzor = szenzor;
-            //await Navigation.PushAsync(new SzenzorData());
+            await Navigation.PushAsync(new SzenzorData(szenzor));
         }
     }
 }
