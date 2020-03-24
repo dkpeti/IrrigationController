@@ -13,6 +13,7 @@ namespace IrrigationController
         public static IPiService PiService { get; private set; }
         public static ISzenzorService SzenzorService { get; private set; }
         public static ILoginService LoginService { get; private set; }
+        public static IMeresService MeresService { get; private set; }
 
         public App()
         {
@@ -23,6 +24,7 @@ namespace IrrigationController
             PiService = new PiRestService(HttpAPI);
             SzenzorService = new SzenzorRestService(HttpAPI);
             LoginService = new LoginService(HttpAPI);
+            MeresService = new MeresRestService(HttpAPI);
             MainPage = new NavigationPage(new Bejelentkezes());
         }
 

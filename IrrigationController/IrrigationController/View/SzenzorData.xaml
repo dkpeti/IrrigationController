@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:dg="clr-namespace:Xamarin.Forms.DataGrid;assembly=Xamarin.Forms.DataGrid"
              mc:Ignorable="d"
              x:Class="IrrigationController.SzenzorData"
               BackgroundColor="#eeeeee"
@@ -14,20 +15,48 @@
                      Clicked="DeleteClicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout Margin="15,15,15,15" BackgroundColor="White">
-            <Label Margin="15,0,0,0"  Text ="Név" FontSize="20"/>
-            <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12">
-                <Label  Text ="{Binding Szenzor.Nev}" FontSize="22" TextColor="Black"/>
-            </Frame>
-            <Label Margin="15,20,0,0"  Text ="Típus" FontSize="20"/>
-            <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12">
-                <Label  Text ="{Binding Szenzor.Tipus}" FontSize="22" TextColor="Black"/>
-            </Frame>
-            <Label Margin="15,20,0,0"  Text ="Megjegyzés" FontSize="20"/>
-            <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12">
-                <Label  Text ="{Binding Szenzor.Megjegyzes}" FontSize="22" TextColor="Black"/>
-            </Frame>
-            <Label Margin="15,20,0,0"  Text ="Mérések" FontSize="20"/>
-        </StackLayout>
+        <ScrollView Margin="15,15,15,15">
+            <StackLayout BackgroundColor="White">
+                <Label Margin="15,15,0,0"  Text ="Név" FontSize="20"/>
+                <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12">
+                    <Label  Text ="{Binding Szenzor.Nev}" FontSize="22" TextColor="Black"/>
+                </Frame>
+                <Label Margin="15,20,0,0"  Text ="Típus" FontSize="20"/>
+                <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12">
+                    <Label  Text ="{Binding SzenzorTipus}" FontSize="22" TextColor="Black"/>
+                </Frame>
+                <Label Margin="15,20,0,0"  Text ="Megjegyzés" FontSize="20"/>
+                <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12">
+                    <Label  Text ="{Binding Szenzor.Megjegyzes}" FontSize="22" TextColor="Black"/>
+                </Frame>
+                <Label Margin="15,20,0,0"  Text ="Mérések" FontSize="20"/>
+                <Frame Margin="15,0,15,15" BorderColor="Gray" Padding="1" HasShadow="False">
+                    <StackLayout Spacing="1" BackgroundColor="Gray">
+                        <Grid RowSpacing="0" ColumnSpacing="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" FontSize="18" BackgroundColor="#90a4ae" FontAttributes="Bold" Text="Idő" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="25"/>
+                            <Label Grid.Column="1" FontSize="18" BackgroundColor="#90a4ae" FontAttributes="Bold" Text="Mért adat" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="25"/>
+                        </Grid>
+                        <StackLayout Spacing="1" BindableLayout.ItemsSource="{Binding Meresek}">
+                            <BindableLayout.ItemTemplate >
+                                <DataTemplate>
+                                    <Grid RowSpacing="0" ColumnSpacing="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" BackgroundColor="#cfd8dc" Text="{Binding Mikor}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="20,20,0,20"/>
+                                        <Label Grid.Column="1" BackgroundColor="#cfd8dc" Text="{Binding MertAdat}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="20,20,0,20"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

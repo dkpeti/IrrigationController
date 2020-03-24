@@ -13,11 +13,9 @@
     </ContentPage.ToolbarItems>
 
     <StackLayout Margin="15,15,15,15" BackgroundColor="White">
-        <Label Margin="20,0,0,0" FontSize="20" Text="Név"/>
-        <Entry Margin="17,0,17,0" x:Name="txtSzenzorNev" BackgroundColor="#f0f0f0" Text="{}" Keyboard="Text" FontSize="22" />
-        <Label Margin="20,0,0,0" FontSize="20" Text="Típus"/>
-        <Entry Margin="17,0,17,0" x:Name="txtSzenzorTipus" BackgroundColor="#f0f0f0" Text="{}" Keyboard="Text" FontSize="22" />
-        <Label Margin="20,0,0,0" FontSize="20" Text="Megjegyzes"/>
-        <Entry Margin="17,0,17,0" x:Name="txtSzenzorMegjegyzes" BackgroundColor="#f0f0f0" Text="{}" Keyboard="Text" FontSize="22" />
+        <Label Margin="20,15,0,0" FontSize="20" Text="Név"/>
+        <Entry Margin="17,0,17,0" x:Name="txtSzenzorNev" BackgroundColor="#f0f0f0" Text="{Binding Nev}" Keyboard="Text" FontSize="22" />
+        <Label Margin="20,15,0,0" FontSize="20" Text="Megjegyzes"/>
+        <Entry Margin="17,0,17,0" x:Name="txtSzenzorMegjegyzes" BackgroundColor="#f0f0f0" Text="{Binding Megjegyzes}" Keyboard="Text" FontSize="22" />
     </StackLayout>
 </ContentPage>

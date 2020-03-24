@@ -15,9 +15,13 @@ namespace IrrigationController
     public partial class SzenzorEdit : ContentPage
     {
         public Szenzor Szenzor { get; set; }
-        public SzenzorEdit()
+
+        readonly private Szenzor mSelSzenzor;
+        public SzenzorEdit(Szenzor mSelSzenzor)
         {
             InitializeComponent();
+            this.mSelSzenzor = mSelSzenzor;
+            BindingContext = mSelSzenzor;
         }
 
         private async void SaveClicked(object sender, EventArgs e)
@@ -25,11 +29,6 @@ namespace IrrigationController
             if (String.IsNullOrEmpty(txtSzenzorNev.Text))
             {
                 await DisplayAlert("Error", "Név ne legyen üres!", "Ok");
-                return;
-            }
-            else if (String.IsNullOrEmpty(txtSzenzorTipus.Text))
-            {
-                await DisplayAlert("Error", "Típus nem lehet üres!", "Ok");
                 return;
             }
             else if (String.IsNullOrEmpty(txtSzenzorMegjegyzes.Text))

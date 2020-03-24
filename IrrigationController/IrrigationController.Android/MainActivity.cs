@@ -23,8 +23,9 @@ namespace IrrigationController.Droid
 
             Xamarin.Auth.CustomTabsConfiguration.CustomTabsClosingMessage = null;
 
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            global::Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            global::Xamarin.Forms.DataGrid.DataGridComponent.Init();
             global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
 
             XamEffects.Droid.Effects.Init();

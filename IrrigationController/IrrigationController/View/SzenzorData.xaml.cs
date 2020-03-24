@@ -16,6 +16,7 @@ namespace IrrigationController
     {
         private readonly int szenzorId;
         private Szenzor szenzor;
+        private List<Meres> meresek;
 
         //PiDatánál
         //await Navigation.PushAsync(new SzenzorData(vSelSzenzor));
@@ -32,18 +33,29 @@ namespace IrrigationController
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+
             szenzor = await GetSzenzor(szenzorId);
             if (szenzor == null) return;
+
+            meresek = await GetMeresek(szenzor);
+            if (meresek == null) return;
+
             BindingContext = new
             {
-                Szenzor = szenzor
+                Szenzor = szenzor,
+                SzenzorTipus = SzenzorTipus(szenzor),
+                Meresek = meresek.Select(meres => new
+                {
+                    Mikor = meres.Mikor.ToString("yyyy-MM-dd hh:mm"),
+                    MertAdat = MertAdat(szenzor, meres)
+                })
             };
         }
 
         //szerkesztésre átnavigál
         private async void EditClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SzenzorEdit());
+            await Navigation.PushAsync(new SzenzorEdit(szenzor));
         }
 
         //törlés
@@ -93,6 +105,55 @@ namespace IrrigationController
                     }
             }
             return null;
+        }
+
+        private async Task<List<Meres>> GetMeresek(Szenzor szenzor)
+        {
+            var response = await App.MeresService.GetAllMeresBySzenzorIdAsync(szenzor.Id);
+            switch (response.Status)
+            {
+                case Status.SUCCESS:
+                    {
+                        return response.Data;
+                    }
+                case Status.NOT_FOUND:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await Navigation.PopAsync();
+                        return null;
+                    }
+                case Status.OTHER_ERROR:
+                    {
+                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        return null;
+                    }
+            }
+            return null;
+        }
+
+        private string SzenzorTipus(Szenzor szenzor)
+        {
+            switch (szenzor.Tipus)
+            {
+                case Model.SzenzorTipus.Homerseklet:
+                    return "Hőmérséklet";
+                case Model.SzenzorTipus.Talajnedvesseg:
+                    return "Talajnedvesség";
+                default:
+                    return "";
+            }
+        }
+        private string MertAdat(Szenzor szenzor, Meres meres)
+        {
+            switch (szenzor.Tipus)
+            {
+                case Model.SzenzorTipus.Homerseklet:
+                    return $"{meres.MertAdat} °C";
+                case Model.SzenzorTipus.Talajnedvesseg:
+                    return $"{meres.MertAdat} %";
+                default:
+                    return "";
+            }
         }
     }
 }

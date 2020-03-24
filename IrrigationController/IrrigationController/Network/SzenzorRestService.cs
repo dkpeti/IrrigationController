@@ -77,9 +77,28 @@ namespace IrrigationController.Network
             return Response.Error("", Szenzorok);
         }
 
-        public Task<Response<Szenzor>> GetOneSzenzorByIdAsync(int id)
+        public async Task<Response<Szenzor>> GetOneSzenzorByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var uri = new Uri(_httpAPI.SzenzorGetOneUrl(id));
+            try
+            {
+                var response = await _httpAPI.HttpClient.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var szenzor = JsonConvert.DeserializeObject<Szenzor>(content);
+                    return Response.Success(szenzor);
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    return Response.NotFound<Szenzor>("Nincs ilyen szenzor");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Response.Error<Szenzor>(ex.Message);
+            }
+            return Response.Error<Szenzor>("");
         }
     }
 }
