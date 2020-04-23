@@ -1,5 +1,7 @@
 ﻿using IrrigationController.Model;
 using IrrigationController.Service;
+using Plugin.Toast;
+using Plugin.Toast.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,7 +13,7 @@ using Xamarin.Forms.Xaml;
 namespace IrrigationController
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ZonaEdit : ContentPage
+    public partial class ZonaEdit : BasePage
     {
         public Zona Zona { get; set; }
         public List<Pi> Pis { get; set; }
@@ -29,23 +31,31 @@ namespace IrrigationController
         {
             base.OnAppearing();
 
-            Pis = await GetPis();
-            if (Pis == null) return;
-            SelPi = Pis.Find(pi => pi.Id == Zona.PiId);
-
-            var lehetsegesSzenzorok = await GetLehetsegesSzenzorok(Zona.PiId);
-            var jelenlegiSzenzorok = await GetJelenlegiSzenzorok(Zona.Id);
-            if (lehetsegesSzenzorok == null || jelenlegiSzenzorok == null) return;
-
-            Szenzorok = new ObservableCollection<CheckedSensor>();
-            foreach(var szenzor in lehetsegesSzenzorok)
+            try
             {
-                Szenzorok.Add(new CheckedSensor
+                IsBusy = true;
+                Pis = await GetPis();
+                if (Pis == null) return;
+                SelPi = Pis.Find(pi => pi.Id == Zona.PiId);
+
+                var lehetsegesSzenzorok = await GetLehetsegesSzenzorok(Zona.PiId);
+                var jelenlegiSzenzorok = await GetJelenlegiSzenzorok(Zona.Id);
+                if (lehetsegesSzenzorok == null || jelenlegiSzenzorok == null) return;
+
+                Szenzorok = new ObservableCollection<CheckedSensor>();
+                foreach (var szenzor in lehetsegesSzenzorok)
+                {
+                    Szenzorok.Add(new CheckedSensor
                     {
                         Szenzor = szenzor,
                         Checked = jelenlegiSzenzorok.Find(s => s.Id == szenzor.Id) != null
                     }
-                );
+                    );
+                }
+            }
+            finally
+            {
+                IsBusy = false;
             }
 
             BindingContext = this;
@@ -75,6 +85,7 @@ namespace IrrigationController
             {
                 case Status.SUCCESS:
                     {
+                        CrossToastPopUp.Current.ShowCustomToast($"{txtZonaNev.Text} sikeresen mentve", bgColor: "#636363", txtColor: "white", ToastLength.Short);
                         await Navigation.PopAsync();
                         break;
                     }

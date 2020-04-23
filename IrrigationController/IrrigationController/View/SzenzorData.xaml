@@ -9,9 +9,9 @@
               BackgroundColor="#eeeeee"
              Title="Szenzor adatai">
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="ToolbarItem_Edit.png"
+        <ToolbarItem IconImageSource="tiEdit.png"
                      Clicked="EditClicked"/>
-        <ToolbarItem IconImageSource="ToolbarItem_Delete.png"
+        <ToolbarItem IconImageSource="tiDelete.png"
                      Clicked="DeleteClicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
@@ -37,8 +37,8 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" FontSize="18" BackgroundColor="#90a4ae" FontAttributes="Bold" Text="Idő" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="25"/>
-                            <Label Grid.Column="1" FontSize="18" BackgroundColor="#90a4ae" FontAttributes="Bold" Text="Mért adat" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="25"/>
+                            <Label Grid.Column="0" FontSize="20" BackgroundColor="#B0BEC5" FontAttributes="Bold" Text="Idő" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="25"/>
+                            <Label Grid.Column="1" FontSize="20" BackgroundColor="#B0BEC5" FontAttributes="Bold" Text="Mért adat" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="25"/>
                         </Grid>
                         <StackLayout Spacing="1" BindableLayout.ItemsSource="{Binding Meresek}">
                             <BindableLayout.ItemTemplate >
@@ -48,8 +48,8 @@
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
-                                        <Label Grid.Column="0" BackgroundColor="#cfd8dc" Text="{Binding Mikor}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="20,20,0,20"/>
-                                        <Label Grid.Column="1" BackgroundColor="#cfd8dc" Text="{Binding MertAdat}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="20,20,0,20"/>
+                                        <Label Grid.Column="0" FontSize="18" BackgroundColor="#eceff1" Text="{Binding Mikor}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="20,20,0,20"/>
+                                        <Label Grid.Column="1" FontSize="18" BackgroundColor="#eceff1" Text="{Binding MertAdat}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="20,20,0,20"/>
                                     </Grid>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>

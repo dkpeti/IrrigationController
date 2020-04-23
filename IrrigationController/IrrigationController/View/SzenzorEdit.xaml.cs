@@ -15,13 +15,11 @@ namespace IrrigationController
     public partial class SzenzorEdit : ContentPage
     {
         public Szenzor Szenzor { get; set; }
-
-        readonly private Szenzor mSelSzenzor;
         public SzenzorEdit(Szenzor mSelSzenzor)
         {
             InitializeComponent();
-            this.mSelSzenzor = mSelSzenzor;
-            BindingContext = mSelSzenzor;
+            this.Szenzor = mSelSzenzor;
+            BindingContext = this.Szenzor;
         }
 
         private async void SaveClicked(object sender, EventArgs e)

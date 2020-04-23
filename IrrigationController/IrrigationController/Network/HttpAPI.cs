@@ -30,6 +30,8 @@ namespace IrrigationController.Network
         public string SzenzorGetAllByZonaIdUrl(int zonaId) => $"{ServerUrl}/szenzor?zonaId={zonaId}";
         public string SzenzorGetAllByPiIdUrl(int piId) => $"{ServerUrl}/szenzor?piId={piId}";
         public string SzenzorGetOneUrl(int id) => $"{ServerUrl}/szenzor/{id}";
+        public string SzenzorEditUrl(int id) => $"{ServerUrl}/szenzor/{id}";
+        public string SzenzorDeleteUrl(int id) => $"{ServerUrl}/szenzor/{id}";
 
         public string MeresGetAllUrl() => $"{ServerUrl}/meres";
         public string MeresGetAllBySzenzorIdUrl(int szenzorId) => $"{ServerUrl}/meres?szenzorId={szenzorId}";

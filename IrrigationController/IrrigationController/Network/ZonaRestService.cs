@@ -34,12 +34,16 @@ namespace IrrigationController.Network
                     Zonak = JsonConvert.DeserializeObject<List<Zona>>(content);
                     return Response.Success(Zonak);
                 }
+                else
+                {
+                    var rescontent = await response.Content.ReadAsStringAsync();
+                    return Response.Error<List<Zona>>(rescontent);
+                }
             }
             catch (Exception ex)
             {
                 return Response.Error(ex.Message, Zonak);
             }
-            return Response.Error("", Zonak);
         }
 
         public async Task<Response<List<Zona>>> GetAllZonaByPiIdAsync(int piId)
@@ -56,12 +60,16 @@ namespace IrrigationController.Network
                     Zonak = JsonConvert.DeserializeObject<List<Zona>>(content);
                     return Response.Success(Zonak);
                 }
+                else
+                {
+                    var rescontent = await response.Content.ReadAsStringAsync();
+                    return Response.Error<List<Zona>>(rescontent);
+                }
             }
             catch (Exception ex)
             {
                 return Response.Error(ex.Message, Zonak);
             }
-            return Response.Error("", Zonak);
         }
 
         public async Task<Response<Zona>> GetOneZonaByIdAsync(int id)
@@ -80,12 +88,16 @@ namespace IrrigationController.Network
                 {
                     return Response.NotFound<Zona>("Nincs ilyen zóna");
                 }
+                else
+                {
+                    var rescontent = await response.Content.ReadAsStringAsync();
+                    return Response.Error<Zona>(rescontent);
+                }
             }
             catch (Exception ex)
             {
                 return Response.Error<Zona>(ex.Message);
             }
-            return Response.Error<Zona>("");
         }
 
         public async Task<Response<Zona>> CreateZonaItemAsync(Zona item)
@@ -101,13 +113,16 @@ namespace IrrigationController.Network
                     var zona = JsonConvert.DeserializeObject<Zona>(rescontent);
                     return Response.Success(zona);
                 }
+                else
+                {
+                    var rescontent = await response.Content.ReadAsStringAsync();
+                    return Response.Error<Zona>(rescontent);
+                }
             }
             catch (Exception ex)
             {
                 return Response.Error<Zona>(ex.Message);
             }
-
-            return Response.Error<Zona>("");
         }
 
         public async Task<Response<object>> EditZonaItemAsync(Zona item)
@@ -121,13 +136,16 @@ namespace IrrigationController.Network
                 {
                     return Response.Success<object>(null);
                 }
+                else
+                {
+                    var rescontent = await response.Content.ReadAsStringAsync();
+                    return Response.Error<object>(rescontent);
+                }
             }
             catch (Exception ex)
             {
                 return Response.Error<object>(ex.Message);
             }
-
-            return Response.Error<object>("");
         }
 
         public async Task<Response<object>> DeleteTodoItemAsync(Zona item)
@@ -140,13 +158,16 @@ namespace IrrigationController.Network
                 {
                     return Response.Success<object>(null);
                 }
+                else
+                {
+                    var rescontent = await response.Content.ReadAsStringAsync();
+                    return Response.Error<object>(rescontent);
+                }
             }
             catch (Exception ex)
             {
                 return Response.Error<object>(ex.Message);
             }
-
-            return Response.Error<object>("");
         }
     }
 }

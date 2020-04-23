@@ -10,12 +10,12 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Mentés"
-                     IconImageSource="ToolbarItem_Save.png"
+                     IconImageSource="tiSave.png"
                      Clicked="SaveClicked"/>
     </ContentPage.ToolbarItems>
 
     <StackLayout Margin="15,15,15,15" BackgroundColor="White" >
-        <Image Margin="0,0,0,20"  Source="image_pi.jpeg"/>
+        <Image Margin="0,0,0,20"  Source="pi.jpeg"/>
         <Label  Margin="20,0,0,0" FontSize="20" Text="Név"/>
         <Entry  Margin="17,0,17,0" BackgroundColor="#f0f0f0" x:Name="txtPiNev" Keyboard="Text" TextColor="Black" FontSize="22" />
         <Label  Margin="20,20,0,0" FontSize="20" Text="Azonosító"/>

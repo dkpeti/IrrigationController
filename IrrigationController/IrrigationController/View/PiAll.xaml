@@ -10,7 +10,7 @@
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Pi hozzáadása"
-            IconImageSource="ToolbarItem_Add.png"
+            IconImageSource="tiAdd.png"
                      Clicked="PiAddClicked"/>
     </ContentPage.ToolbarItems>
 
@@ -35,7 +35,7 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.RowSpan="4"
                                 Grid.ColumnSpan="4"         
-                                Source="image_pi.jpeg"
+                                Source="pi.jpeg"
                                 Aspect="AspectFill"/>
                             <Label  Grid.Row="4"
                                     Grid.Column="0"

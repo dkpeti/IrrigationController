@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Plugin.Toast;
+using Plugin.Toast.Abstractions;
 
 namespace IrrigationController
 {
@@ -39,6 +41,7 @@ namespace IrrigationController
             {
                 case Status.SUCCESS:
                     {
+                        CrossToastPopUp.Current.ShowCustomToast($"{txtPiNev.Text} sikeresen hozzáadva", bgColor: "#636363", txtColor: "white", ToastLength.Short);
                         await Navigation.PopAsync();
                         await Navigation.PushAsync(new PiData(response.Data));
                         break;

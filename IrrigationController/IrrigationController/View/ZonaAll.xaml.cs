@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace IrrigationController
 {
-    public partial class ZonaAll : ContentPage
+    public partial class ZonaAll : BasePage
     {
         public ZonaAll()
         {
@@ -17,21 +17,30 @@ namespace IrrigationController
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            var response = await App.ZonaService.GetAllZonaAsync();
-            switch(response.Status)
+            try
             {
-                case Status.SUCCESS:
-                    {
-                        ZonaList.ItemsSource = response.Data;
-                        break;
-                    }
-                case Status.OTHER_ERROR:
-                    {
-                        ZonaList.ItemsSource = response.Data;
-                        await DisplayAlert("Error", response.StatusString, "Ok");
-                        break;
-                    }
+                IsBusy = true;
+                var response = await App.ZonaService.GetAllZonaAsync();
+                switch (response.Status)
+                {
+                    case Status.SUCCESS:
+                        {
+                            ZonaList.ItemsSource = response.Data;
+                            break;
+                        }
+                    case Status.OTHER_ERROR:
+                        {
+                            ZonaList.ItemsSource = response.Data;
+                            await DisplayAlert("Error", response.StatusString, "Ok");
+                            break;
+                        }
+                }
             }
+            finally
+            {
+                IsBusy = false;
+            }
+            
         }
 
         public async void OnSelection(object sender, SelectedItemChangedEventArgs e)
@@ -50,14 +59,7 @@ namespace IrrigationController
         }
         void InditasImageTapped(object sender, EventArgs args)
         {
-            try
-            {
-                DisplayAlert("Öntözés elindítása", "Nincs kapcsolat a szerverrel", "Ok");
-            }
-            catch
-            {
-                DisplayAlert("Öntözés elindítása most nem lehetséges", "Nincs kapcsolat a szerverrel", "Ok");
-            }
+           
         }
     }
 }

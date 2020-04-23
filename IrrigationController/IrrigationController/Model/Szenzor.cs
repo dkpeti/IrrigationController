@@ -18,4 +18,5 @@ namespace IrrigationController.Model
         public int ZonaId { get; set; }
         public int PiId { get; set; }
     }
+    
 }

@@ -10,14 +10,14 @@
              x:Name="PiDataPage"
              BackgroundColor="#eeeeee">
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="ToolbarItem_Edit.png"
+        <ToolbarItem IconImageSource="tiEdit.png"
                      Clicked="EditClicked"/>
-        <ToolbarItem IconImageSource="ToolbarItem_Delete.png"
+        <ToolbarItem IconImageSource="tiDelete.png"
                      Clicked="DeleteClicked"/>
     </ContentPage.ToolbarItems>
     <ScrollView Margin="15,15,15,15">
         <StackLayout  BackgroundColor="White">
-            <Image Margin="0,0,0,20" Source="image_pi.jpeg"/>
+            <Image Margin="0,0,0,20" Source="pi.jpeg"/>
             <Label Margin="15,0,0,0" Text="Név" FontSize="20" />
             <Frame Margin="15,0,15,0"  BorderColor="Gray" HasShadow="False" Padding="12">
                 <Label x:Name="lb_Nev"  Text ="{Binding Pi.Nev}" FontSize="22" TextColor="Black"/>

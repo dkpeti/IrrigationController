@@ -1,6 +1,8 @@
 ﻿using IrrigationController.Model;
 using IrrigationController.Network;
 using IrrigationController.Service;
+using Plugin.Toast;
+using Plugin.Toast.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,6 +68,7 @@ namespace IrrigationController
                 {
                     case Status.SUCCESS:
                         {
+                            CrossToastPopUp.Current.ShowCustomToast($"{pi.Nev} sikeresen törölve", bgColor: "#636363", txtColor: "white", ToastLength.Short);
                             await Navigation.PopAsync();
                             break;
                         }

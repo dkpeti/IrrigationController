@@ -76,13 +76,16 @@ namespace IrrigationController.Network
                     var pi = JsonConvert.DeserializeObject<Pi>(rescontent);
                     return Response.Success(pi);
                 }
+                else
+                {
+                    var rescontent = await response.Content.ReadAsStringAsync();
+                    return Response.Error<Pi>(rescontent);
+                }
             }
             catch (Exception ex)
             {
                 return Response.Error<Pi>(ex.Message);
             }
-
-            return Response.Error<Pi>("");
         }
         public async Task<Response<object>> EditPiItemAsync(Pi item)
         {
@@ -95,13 +98,16 @@ namespace IrrigationController.Network
                 {
                     return Response.Success<object>(null);
                 }
+                else
+                {
+                    var rescontent = await response.Content.ReadAsStringAsync();
+                    return Response.Error<object>(rescontent);
+                }
             }
             catch (Exception ex)
             {
                 return Response.Error<object>(ex.Message);
             }
-
-            return Response.Error<object>("");
         }
         public async Task<Response<object>> DeleteTodoItemAsync(Pi item)
         {
@@ -113,13 +119,16 @@ namespace IrrigationController.Network
                 {
                     return Response.Success<object>(null);
                 }
+                else
+                {
+                    var rescontent = await response.Content.ReadAsStringAsync();
+                    return Response.Error<object>(rescontent);
+                }
             }
             catch (Exception ex)
             {
                 return Response.Error<object>(ex.Message);
             }
-
-            return Response.Error<object>("");
         } 
     }
 }

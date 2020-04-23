@@ -11,7 +11,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AiForms.Effects" Version="1.6.7" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Plugin.Toast" Version="2.1.2" />
     <PackageReference Include="ServiceStack.Interfaces" Version="5.8.0" />
     <PackageReference Include="Xamarin.Auth" Version="1.7.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />
@@ -23,9 +25,6 @@
   <ItemGroup>
     <Compile Update="View\Bejelentkezes.xaml.cs">
       <DependentUpon>Bejelentkezes.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="View\Profil.xaml.cs">
-      <DependentUpon>Profil.xaml</DependentUpon>
     </Compile>
     <Compile Update="View\PiData.xaml.cs">
       <DependentUpon>PiData.xaml</DependentUpon>
@@ -49,9 +48,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\Bejelentkezes.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\Profil.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\PiAll.xaml">

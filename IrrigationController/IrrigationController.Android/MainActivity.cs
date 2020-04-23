@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -8,6 +7,7 @@ using Android.Widget;
 using Android.OS;
 using System.Net;
 using Xamarin.Auth;
+using Xamarin.Forms;
 
 namespace IrrigationController.Droid
 {

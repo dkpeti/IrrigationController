@@ -7,15 +7,15 @@
              Title="Zóna adatai"
              BackgroundColor="#eeeeee">
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="ToolbarItem_Edit.png"
+        <ToolbarItem IconImageSource="tiEdit.png"
                      Clicked="EditClicked"/>
-        <ToolbarItem IconImageSource="ToolbarItem_Delete.png"
+        <ToolbarItem IconImageSource="tiDelete.png"
                      Clicked="DeleteClicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView Margin="15,15,15,15">
             <StackLayout  BackgroundColor="White">
-                <Image Margin="0,0,0,20" Source="image_bokor.jpg"/>
+                <Image Margin="0,0,0,20" Source="bokrok.jpg"/>
                 <Label Margin="15,0,0,0"  Text ="Név" FontSize="20"/>
                 <Frame Margin="15,0,15,0" BorderColor="Gray" HasShadow="False" Padding="12">
                     <Label  Text ="{Binding Zona.Nev}" FontSize="22" TextColor="Black"/>

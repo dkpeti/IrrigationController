@@ -44,10 +44,10 @@ namespace IrrigationController
             await DisplayAlert("Error", reason, "Ok");
         }
 
-        private async void Felhasznalo_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Profil());
-        }
+        //private async void Felhasznalo_Clicked(object sender, EventArgs e)
+        //{
+        //    //await Navigation.PushAsync(new Profil());
+        //}
     }
 
     public enum AuthProvider

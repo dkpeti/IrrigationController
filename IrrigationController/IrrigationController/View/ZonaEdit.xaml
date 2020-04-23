@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<irrigationcontroller:BasePage
+    xmlns:irrigationcontroller="clr-namespace:IrrigationController" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
              x:Class="IrrigationController.ZonaEdit"
@@ -7,12 +8,12 @@
              x:Name="ZonaEditPage"
              BackgroundColor="#eeeeee">
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="ToolbarItem_Save.png"
+        <ToolbarItem IconImageSource="tiSave.png"
                      Clicked="SaveClicked"/>
     </ContentPage.ToolbarItems>
     <ScrollView Margin="15,15,15,15">
         <StackLayout BackgroundColor="White">
-            <Image Margin="0,0,0,20"  Source="image_bokor.jpg"/>
+            <Image Margin="0,0,0,20"  Source="bokrok.jpg"/>
             <Label Margin="20,0,0,0"  Text ="Név" FontSize="20"/>
             <Entry Margin="17,0,17,0" BackgroundColor="#f0f0f0" Text="{Binding Zona.Nev}" x:Name="txtZonaNev" Keyboard="Text" FontSize="22"/>
             <Label Margin="17,20,0,0" Text="Pi" FontSize="20"/>
@@ -43,4 +44,4 @@
             </Frame>
         </StackLayout>
     </ScrollView>
-</ContentPage>
+</irrigationcontroller:BasePage>

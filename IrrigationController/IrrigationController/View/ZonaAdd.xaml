@@ -7,16 +7,39 @@
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Mentés"
-                     IconImageSource="ToolbarItem_Save.png"
+                     IconImageSource="tiSave.png"
                      Clicked="SaveClicked"/>
     </ContentPage.ToolbarItems>
 
     <StackLayout Margin="15,15,15,15" BackgroundColor="White">
-        <Image Margin="0,0,0,20"  Source="image_bokor.jpg"  x:Name="image"/>
+        <Image Margin="0,0,0,20"  Source="bokrok.jpg"  x:Name="image"/>
         <Label Margin="20,0,0,0"  Text ="Név" FontSize="20"/>
         <Entry Margin="17,0,17,0" BackgroundColor="#f0f0f0" x:Name="txtZonaNev" Keyboard="Text" FontSize="22"/>
         <Label  Margin="20,20,0,0" FontSize="20" Text="Pi"/>
         <Picker Margin="17,0,17,0" x:Name="PiPicker" BackgroundColor="#f0f0f0" Title="Pi választása" FontSize="22"
-                ItemsSource="{Binding Pis}" ItemDisplayBinding="{Binding Nev}" SelectedItem="{Binding SelPi}"/>
+                ItemsSource="{Binding Pis}" ItemDisplayBinding="{Binding Nev}" SelectedItem="{Binding SelPi}" SelectedIndexChanged="PiPicker_SelectedIndexChanged"/>
+
+        <Label Margin="15,20,0,0" Text="Pihez tartozó szenzorok" FontSize="20"/>
+        <Frame Margin="15,0,15,15" BorderColor="Gray" HasShadow="False" Padding="12">
+            <StackLayout BindableLayout.ItemsSource="{Binding Szenzorok}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Center" 
+                                    Margin="0" Padding="0,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <CheckBox Grid.Column="0" Grid.Row="0" IsChecked="{Binding Checked, Mode=TwoWay}" />
+                            <Label Grid.Column="1" Grid.Row="0" Text="{Binding Szenzor.Nev}" Padding="10,10,10,10" FontSize="22" TextColor="Black"
+                                           HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </Frame>
     </StackLayout>
 </ContentPage>

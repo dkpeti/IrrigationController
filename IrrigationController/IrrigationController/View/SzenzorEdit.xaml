@@ -8,7 +8,7 @@
              Title="Szenzor szerkesztés"
              BackgroundColor="#eeeeee">
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="ToolbarItem_Save.png"
+        <ToolbarItem IconImageSource="tiSave.png"
                      Clicked="SaveClicked"/>
     </ContentPage.ToolbarItems>
 

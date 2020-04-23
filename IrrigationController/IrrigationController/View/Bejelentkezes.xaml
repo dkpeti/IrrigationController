@@ -18,7 +18,7 @@
                FontSize="25"
                FontAttributes="Bold"
                TextColor="Black"/>
-        <ImageButton Source="googlelogin.png"
+        <ImageButton Source="btnGoogleLogin.png"
                          VerticalOptions="EndAndExpand" 
                          HorizontalOptions="CenterAndExpand"
                          HeightRequest="60"

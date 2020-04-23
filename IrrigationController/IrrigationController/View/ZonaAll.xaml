@@ -1,13 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<irrigationcontroller:BasePage
+    xmlns:irrigationcontroller="clr-namespace:IrrigationController" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IrrigationController.ZonaAll"
+		     xmlns:ef="clr-namespace:AiForms.Effects;assembly=AiForms.Effects"
              Title="Zónák"
              BackgroundColor="#eeeeee">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Zóna hozzáadása"
-            IconImageSource="ToolbarItem_Add.png"
+            IconImageSource="tiAdd.png"
                      Clicked="ZonaAddClicked"/>
     </ContentPage.ToolbarItems>
     <StackLayout  Margin="15,15,15,15">
@@ -21,40 +23,54 @@
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <ViewCell >
-                        <Grid Padding="0,0,0,8">
+                        <Grid Padding="0,0,0,0">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="200" />
                                 <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
+                                <RowDefinition Height="10" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.RowSpan="3"
-                                Grid.ColumnSpan="3"         
-                                Source="image_bokor.jpg"
+                            <Image Grid.Row="0"
+                                   Grid.Column="0"
+                                Grid.ColumnSpan="2"         
+                                Source="bokrok.jpg"
                                 Aspect="AspectFill"/>
-                            <Image Source="icon_inditas.png"
-                                    Grid.Row="3"    
+                            <Image Source="btnInditas.png"
+                                    Grid.Row="1"    
                                     Grid.Column="0"
                                     HeightRequest="60"
-                                    WidthRequest="60">
+                                    WidthRequest="60"
+                                   Margin="10,0,10,0"
+                                   
+                                    ef:AddNumberPicker.On="True"
+			                        ef:AddNumberPicker.Min="1"
+			                        ef:AddNumberPicker.Max="59"
+			                        ef:AddNumberPicker.Number="{Binding Number}"
+			                        ef:AddNumberPicker.Title="Öntözés hossza (perc)"
+                                    ef:AddNumberPicker.Command="{Binding SomeCommand}"> 
+                                
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Tapped="InditasImageTapped"
                                         NumberOfTapsRequired="1"/>
                                 </Image.GestureRecognizers>
                             </Image>
-                            <Label  Grid.Row="3"
+                            <Label  Grid.Row="1"
                                     Grid.Column="1" 
                                     Text="{Binding Nev}"
                                     FontAttributes="Bold" FontSize="20"
                                     VerticalTextAlignment="Center"/>
+                            <Frame  Grid.Row="2"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    BackgroundColor="#eeeeee" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
-</ContentPage>
+</irrigationcontroller:BasePage>

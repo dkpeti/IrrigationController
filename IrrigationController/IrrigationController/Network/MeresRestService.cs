@@ -31,12 +31,16 @@ namespace IrrigationController.Network
                     Meresek = JsonConvert.DeserializeObject<List<Meres>>(content);
                     return Response.Success(Meresek);
                 }
+                else
+                {
+                    var rescontent = await response.Content.ReadAsStringAsync();
+                    return Response.Error<List<Meres>>(rescontent);
+                }
             }
             catch (Exception ex)
             {
                 return Response.Error(ex.Message, Meresek);
             }
-            return Response.Error("", Meresek);
         }
 
         public async Task<Response<List<Meres>>> GetAllMeresBySzenzorIdAsync(int szenzorId)
@@ -52,12 +56,16 @@ namespace IrrigationController.Network
                     Meresek = JsonConvert.DeserializeObject<List<Meres>>(content);
                     return Response.Success(Meresek);
                 }
+                else
+                {
+                    var rescontent = await response.Content.ReadAsStringAsync();
+                    return Response.Error<List<Meres>>(rescontent);
+                }
             }
             catch (Exception ex)
             {
                 return Response.Error(ex.Message, Meresek);
             }
-            return Response.Error("", Meresek);
         }
     }
 }

@@ -10,8 +10,7 @@
             SelectedTabColor="#2196F3"
             UnselectedTabColor="#aeaeae">
 
-    <local:ZonaAll IconImageSource="icon_zonak.png"/>
-    <local:PiAll IconImageSource="ToolbarItem_Pi.png"/>
-    <local:Profil IconImageSource="icon_fiok.png"/>
+    <local:ZonaAll IconImageSource="tiZona.png"/>
+    <local:PiAll IconImageSource="tiPi.png"/>
 
 </TabbedPage>

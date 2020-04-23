@@ -18,9 +18,6 @@ namespace IrrigationController
         private Szenzor szenzor;
         private List<Meres> meresek;
 
-        //PiDatánál
-        //await Navigation.PushAsync(new SzenzorData(vSelSzenzor));
-        //Szenzor vSelSzenzor nem kell
         public SzenzorData()
         {
             InitializeComponent();
