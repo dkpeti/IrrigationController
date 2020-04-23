@@ -12,7 +12,7 @@ using Xamarin.Forms.Xaml;
 namespace IrrigationController
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ZonaData : ContentPage
+    public partial class ZonaData : BasePage
     {
         private readonly int zonaId;
         private Zona zona;
@@ -32,22 +32,32 @@ namespace IrrigationController
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            zona = await GetZona(zonaId);
-            if (zona == null) return;
-            
-            pi = await GetPi(zona.PiId);
-            if (pi == null) return;
-
-            szenzorok = await GetSzenzorok(zonaId);
-            if (szenzorok == null) return;
-
-            BindingContext = new
+            try
             {
-                Zona = zona,
-                Pi = pi,
-                Szenzorok = szenzorok,
-                SzenzorTappedCommand = new Command<Szenzor>(SzenzorokTapped)
-            };
+                IsBusy = true;
+
+                zona = await GetZona(zonaId);
+                if (zona == null) return;
+
+                pi = await GetPi(zona.PiId);
+                if (pi == null) return;
+
+                szenzorok = await GetSzenzorok(zonaId);
+                if (szenzorok == null) return;
+
+                BindingContext = new
+                {
+                    Zona = zona,
+                    Pi = pi,
+                    Szenzorok = szenzorok,
+                    SzenzorTappedCommand = new Command<Szenzor>(SzenzorokTapped)
+                };
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+            
         }
 
         //szerkesztés átnavigál

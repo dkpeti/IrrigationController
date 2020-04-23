@@ -26,6 +26,7 @@ namespace IrrigationController.Network
         public string ZonaCreateUrl() => $"{ServerUrl}/zona";
         public string ZonaEditUrl(int id) => $"{ServerUrl}/zona/{id}";
         public string ZonaDeleteUrl(int id) => $"{ServerUrl}/zona/{id}";
+        public string ZonaOntozesUrl(int id) => $"{ServerUrl}/zona/{id}/ontozes";
 
         public string SzenzorGetAllByZonaIdUrl(int zonaId) => $"{ServerUrl}/szenzor?zonaId={zonaId}";
         public string SzenzorGetAllByPiIdUrl(int piId) => $"{ServerUrl}/szenzor?piId={piId}";

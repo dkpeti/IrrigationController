@@ -169,5 +169,28 @@ namespace IrrigationController.Network
                 return Response.Error<object>(ex.Message);
             }
         }
+
+        public async Task<Response<object>> ZonaOntozesAsync(Zona item, Ontozes ontozes)
+        {
+            var uri = new Uri(_httpAPI.ZonaOntozesUrl(item.Id));
+            try
+            {
+                var content = new StringContent(JsonConvert.SerializeObject(ontozes), Encoding.UTF8, "application/json");
+                var response = await _httpAPI.HttpClient.PostAsync(uri, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    return Response.Success<object>(null);
+                }
+                else
+                {
+                    var rescontent = await response.Content.ReadAsStringAsync();
+                    return Response.Error<object>(rescontent);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Response.Error<object>(ex.Message);
+            }
+        }
     }
 }

@@ -25,24 +25,31 @@
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <ViewCell >
-                        <Grid Padding="0,0,0,8">
+                        <Grid Padding="0,0,0,0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="200" />
                                 <RowDefinition Height="*" />
+                                <RowDefinition Height="10" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Image Grid.RowSpan="4"
-                                Grid.ColumnSpan="4"         
-                                Source="pi.jpeg"
-                                Aspect="AspectFill"/>
-                            <Label  Grid.Row="4"
+                            <Image  Grid.Row="0"
                                     Grid.Column="0"
-                                    Margin="20,0,0,0"
+                                    Grid.ColumnSpan="2"         
+                                    Source="pi.jpg"
+                                    Aspect="AspectFill"/>
+                            <Label  Grid.Row="1"    
+                                    Grid.Column="0"
+                                    HeightRequest="60"                                  
+                                    Padding="20,0,10,0"
                                     Text="{Binding Nev}"
                                     FontAttributes="Bold" FontSize="25"
                                     VerticalTextAlignment="Center"/>
+                            <Frame  Grid.Row="2"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    BackgroundColor="#eeeeee" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

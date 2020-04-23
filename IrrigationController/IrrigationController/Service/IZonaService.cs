@@ -15,5 +15,6 @@ namespace IrrigationController.Service
         Task<Response<Zona>> CreateZonaItemAsync(Zona item);
         Task<Response<object>> EditZonaItemAsync(Zona item);
         Task<Response<object>> DeleteTodoItemAsync(Zona item);
+        Task<Response<object>> ZonaOntozesAsync(Zona item, Ontozes ontozes);
     }
 }

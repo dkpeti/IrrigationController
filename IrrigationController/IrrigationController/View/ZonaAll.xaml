@@ -5,6 +5,7 @@
              x:Class="IrrigationController.ZonaAll"
 		     xmlns:ef="clr-namespace:AiForms.Effects;assembly=AiForms.Effects"
              Title="Zónák"
+             x:Name="ZonaAllPage"
              BackgroundColor="#eeeeee">
 
     <ContentPage.ToolbarItems>
@@ -13,8 +14,9 @@
                      Clicked="ZonaAddClicked"/>
     </ContentPage.ToolbarItems>
     <StackLayout  Margin="15,15,15,15">
-        <ListView x:Name="ZonaList" 
+        <ListView x:Name="ZonaList"
                   ItemSelected="OnSelection"
+                  ItemsSource="{Binding Zonak}"
                   HasUnevenRows="true"
                   SeparatorVisibility="Default"
                   SelectionMode="Single"
@@ -33,36 +35,47 @@
                                 <ColumnDefinition Width="80" />
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
+                            
                             <Image Grid.Row="0"
                                    Grid.Column="0"
-                                Grid.ColumnSpan="2"         
-                                Source="bokrok.jpg"
-                                Aspect="AspectFill"/>
-                            <Image Source="btnInditas.png"
-                                    Grid.Row="1"    
-                                    Grid.Column="0"
-                                    HeightRequest="60"
-                                    WidthRequest="60"
+                                   Grid.ColumnSpan="2"         
+                                   Source="bokrok.jpg"
+                                   Aspect="AspectFill"/>
+                            
+                            <Image Source="btnStart.png"
+                                   Grid.Row="1"    
+                                   Grid.Column="0"
+                                   HeightRequest="60"
+                                   WidthRequest="60"
                                    Margin="10,0,10,0"
+                                   IsVisible="{Binding OntozesBe}"
                                    
                                     ef:AddNumberPicker.On="True"
 			                        ef:AddNumberPicker.Min="1"
 			                        ef:AddNumberPicker.Max="59"
-			                        ef:AddNumberPicker.Number="{Binding Number}"
 			                        ef:AddNumberPicker.Title="Öntözés hossza (perc)"
-                                    ef:AddNumberPicker.Command="{Binding SomeCommand}"> 
-                                
+                                    ef:AddNumberPicker.Command="{Binding OntozesBeCommand}"/>
+                            
+                            <Image Source="btnStop.png"
+                                Grid.Row="1"    
+                                Grid.Column="0"
+                                HeightRequest="60"
+                                WidthRequest="60"
+                                Margin="10,0,10,0"
+                                IsVisible="{Binding OntozesKi}">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer
-                                        Tapped="InditasImageTapped"
-                                        NumberOfTapsRequired="1"/>
+                                        Command="{Binding OntozesKiCommand}"/>
                                 </Image.GestureRecognizers>
+                                
                             </Image>
+
                             <Label  Grid.Row="1"
                                     Grid.Column="1" 
                                     Text="{Binding Nev}"
                                     FontAttributes="Bold" FontSize="20"
                                     VerticalTextAlignment="Center"/>
+                            
                             <Frame  Grid.Row="2"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"

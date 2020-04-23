@@ -27,6 +27,7 @@ namespace IrrigationController.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             global::Xamarin.Forms.DataGrid.DataGridComponent.Init();
             global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
+            AiForms.Effects.Droid.Effects.Init();
 
             XamEffects.Droid.Effects.Init();
 

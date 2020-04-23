@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<irrigationcontroller:BasePage
+    xmlns:irrigationcontroller="clr-namespace:IrrigationController"
+    xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
              x:Class="IrrigationController.ZonaData"
@@ -43,4 +45,4 @@
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-</ContentPage>
+</irrigationcontroller:BasePage>

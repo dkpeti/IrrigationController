@@ -10,5 +10,7 @@ namespace IrrigationController.Model
         public string Nev { get; set; }
         public int PiId { get; set; }
         public int[] SzenzorLista { get; set; }
+        public DateTime? UtolsoOntozesKezdese { get; set; }
+        public int? UtolsoOntozesHossza { get; set; }
     }
 }
