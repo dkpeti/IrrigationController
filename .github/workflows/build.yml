@@ -12,12 +12,14 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Android
-      with:
-        name: irrigationcontroller.apk
-        path: IrrigationController/IrrigationController.Android/bin/Release/com.companyname.irrigationcontroller-Signed.apk
       run: |
         cd IrrigationController
         nuget restore
         cd IrrigationController.Android
         msbuild IrrigationController.Android.csproj /verbosity:normal /t:SignAndroidPackage /p:Configuration=Release
+    - name: Upload APK
+      uses: actions/upload-artifact@v1    
+      with:
+        name: irrigationcontroller.apk
+        path: IrrigationController/IrrigationController.Android/bin/Release/com.companyname.irrigationcontroller-Signed.apk
 
