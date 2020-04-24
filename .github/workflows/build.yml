@@ -1,0 +1,23 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build APK
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Android
+      with:
+        name: irrigationcontroller.apk
+        path: IrrigationController/IrrigationController.Android/bin/Release/com.companyname.irrigationcontroller-Signed.apk
+      run: |
+        cd IrrigationController
+        nuget restore
+        cd IrrigationController.Android
+        msbuild IrrigationController.Android.csproj /verbosity:normal /t:SignAndroidPackage /p:Configuration=Release
+
