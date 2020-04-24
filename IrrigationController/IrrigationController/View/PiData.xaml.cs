@@ -14,7 +14,7 @@ using Xamarin.Forms.Xaml;
 namespace IrrigationController
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PiData : ContentPage
+    public partial class PiData : BasePage
     {
         private readonly int piId;
         private Pi pi;
@@ -34,25 +34,34 @@ namespace IrrigationController
         }
         protected async override void OnAppearing()
         {
-            base.OnAppearing();
-
-            pi = await GetPi(pi.Id);
-            if (pi == null) return;
-
-            zonak = await GetZonakByPi(pi.Id);
-            if (zonak == null) return;
-
-            szenzorok = await GetSzenzorokByPiId(pi.Id);
-            if (szenzorok == null) return;
-
-            BindingContext = new
+            try
             {
-                Pi = pi,
-                Zonak = zonak,
-                ZonaTappedCommand = new Command<Zona>(ZonaTapped),
-                Szenzorok = szenzorok,
-                SzenzorTappedCommand = new Command<Szenzor>(SzenzorTapped)
-            };
+                IsBusy = true;
+                base.OnAppearing();
+
+                pi = await GetPi(pi.Id);
+                if (pi == null) return;
+
+                zonak = await GetZonakByPi(pi.Id);
+                if (zonak == null) return;
+
+                szenzorok = await GetSzenzorokByPiId(pi.Id);
+                if (szenzorok == null) return;
+
+                BindingContext = new
+                {
+                    Pi = pi,
+                    Zonak = zonak,
+                    ZonaTappedCommand = new Command<Zona>(ZonaTapped),
+                    Szenzorok = szenzorok,
+                    SzenzorTappedCommand = new Command<Szenzor>(SzenzorTapped)
+                };
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+           
         }
         public async void EditClicked(object sender, EventArgs args)
         {

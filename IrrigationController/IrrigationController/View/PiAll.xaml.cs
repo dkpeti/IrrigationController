@@ -8,7 +8,7 @@ using Xamarin.Forms;
 namespace IrrigationController
 {
 
-    public partial class PiAll : ContentPage
+    public partial class PiAll : BasePage
     {
         public PiAll()
         {
@@ -17,7 +17,9 @@ namespace IrrigationController
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+            IsBusy = true;
             var response = await App.PiService.GetAllPiAsync();
+            IsBusy = false;
             switch (response.Status)
             {
                 case Status.SUCCESS:

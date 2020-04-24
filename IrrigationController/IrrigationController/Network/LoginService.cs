@@ -1,4 +1,5 @@
-﻿using IrrigationController.Model;
+﻿using IrrigationController.Helpers;
+using IrrigationController.Model;
 using IrrigationController.Service;
 using Newtonsoft.Json;
 using System;
@@ -14,12 +15,12 @@ namespace IrrigationController.Network
 
     public class LoginService : ILoginService
     {
-        private static readonly string GOOGLE_CLIENT_ID = "128088518939-g0ht0124tg75nj1j661hqb21nccg4l70.apps.googleusercontent.com";
-        private static readonly string GOOGLE_CLIENT_SECRET = "";
-        public static readonly string GOOGLE_REDIRECT_URL = "com.googleusercontent.apps.128088518939-g0ht0124tg75nj1j661hqb21nccg4l70:/oauth2redirect";
+        private static readonly string GOOGLE_CLIENT_ID = $"{Secrets.GoogleClientId}";
+        private static readonly string GOOGLE_CLIENT_SECRET = $"{Secrets.GoogleClientSecret}";
+        public static readonly string GOOGLE_REDIRECT_URL = $"{Secrets.GoogleRedirectUrl}:/oauth2redirect";
 
 
-        private HttpAPI _httpAPI;
+        private readonly HttpAPI _httpAPI;
         private OAuth2Authenticator _authenticator;
         private LoginSucceeded _loginSucceeded;
         private LoginFailed _loginFailed;

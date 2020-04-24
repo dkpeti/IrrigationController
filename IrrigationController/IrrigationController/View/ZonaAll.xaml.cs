@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Timers;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace IrrigationController
@@ -17,7 +19,6 @@ namespace IrrigationController
         public ZonaAll()
         {
             InitializeComponent();
-            
         }
 
         protected override async void OnAppearing()
@@ -32,16 +33,20 @@ namespace IrrigationController
             {
                 IsBusy = false;
             }
-            
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
         }
 
         public async void OnSelection(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null)
-            {
+            {   
                 return;
             }
-            var vSelUser = (Zona)e.SelectedItem;
+            var vSelUser = (Zona)e.SelectedItem.GetType().GetProperty("Zona").GetValue(e.SelectedItem, null);
             await Navigation.PushAsync(new ZonaData(vSelUser));
             ZonaList.SelectedItem = null;
         }
@@ -63,11 +68,16 @@ namespace IrrigationController
                         zona.UtolsoOntozesKezdese == null ||
                         zona.UtolsoOntozesKezdese?.AddMinutes(zona.UtolsoOntozesHossza ?? 0) <= DateTime.UtcNow;
 
+                    var ontozesHatra = (DateTime.UtcNow - (zona.UtolsoOntozesKezdese ?? DateTime.UtcNow)).TotalMinutes;
+                    double ontozesProgress = (double)ontozesHatra / (zona.UtolsoOntozesHossza ?? 1);
+
                     return new
                     {
-                        Nev = zona.Nev,
+                        Zona = zona,
                         OntozesBe = ontozesBe,
                         OntozesKi = !ontozesBe,
+                        Hossz = 0,
+                        OntozesProgress = ontozesProgress,
                         OntozesBeCommand = new Command<int>(async (hossz) =>
                         {
                             await OntozesIndit(zona, hossz);
@@ -117,7 +127,7 @@ namespace IrrigationController
                 {
                     case Status.SUCCESS:
                         {
-                            CrossToastPopUp.Current.ShowCustomToast($"Öntözés elindítva {hossz} percre", bgColor: "#636363", txtColor: "white", ToastLength.Short);
+                            CrossToastPopUp.Current.ShowCustomToast($"Öntözés elindítva {hossz} percre", bgColor: "#636363", txtColor: "white", ToastLength.Long);
                             await Reload();
                             break;
                         }

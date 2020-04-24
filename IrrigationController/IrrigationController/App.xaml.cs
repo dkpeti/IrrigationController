@@ -1,4 +1,5 @@
-﻿using IrrigationController.Network;
+﻿using IrrigationController.Helpers;
+using IrrigationController.Network;
 using IrrigationController.Service;
 using System;
 using Xamarin.Forms;
@@ -18,7 +19,7 @@ namespace IrrigationController
         public App()
         {
             InitializeComponent();
-            HttpAPI = new HttpAPI("https://192.168.1.2:45455/api");
+            HttpAPI = new HttpAPI($"{Secrets.IrrigationServerUrl}/api");
 
             ZonaService = new ZonaRestService(HttpAPI);
             PiService = new PiRestService(HttpAPI);

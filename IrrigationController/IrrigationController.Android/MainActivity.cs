@@ -8,6 +8,7 @@ using Android.OS;
 using System.Net;
 using Xamarin.Auth;
 using Xamarin.Forms;
+using ProgressRingControl.Forms.Plugin.Android;
 
 namespace IrrigationController.Droid
 {
@@ -27,8 +28,8 @@ namespace IrrigationController.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             global::Xamarin.Forms.DataGrid.DataGridComponent.Init();
             global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
-            AiForms.Effects.Droid.Effects.Init();
 
+            AiForms.Effects.Droid.Effects.Init();
             XamEffects.Droid.Effects.Init();
 
             ServicePointManager.ServerCertificateValidationCallback += (o, cert, chain, errors) => true;

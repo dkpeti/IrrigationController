@@ -103,6 +103,8 @@ namespace IrrigationController.Network
         public async Task<Response<Zona>> CreateZonaItemAsync(Zona item)
         {
             var uri = new Uri(_httpAPI.ZonaCreateUrl());
+            if (item.UtolsoOntozesKezdese == null) item.UtolsoOntozesKezdese = DateTime.UtcNow;
+            if (item.UtolsoOntozesHossza == null) item.UtolsoOntozesHossza = 0;
             try
             {
                 var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
@@ -128,6 +130,8 @@ namespace IrrigationController.Network
         public async Task<Response<object>> EditZonaItemAsync(Zona item)
         {
             var uri = new Uri(_httpAPI.ZonaEditUrl(item.Id));
+            if (item.UtolsoOntozesKezdese == null) item.UtolsoOntozesKezdese = DateTime.UtcNow;
+            if (item.UtolsoOntozesHossza == null) item.UtolsoOntozesHossza = 0;
             try
             {
                 var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");

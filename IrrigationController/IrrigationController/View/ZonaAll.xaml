@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <irrigationcontroller:BasePage
     xmlns:irrigationcontroller="clr-namespace:IrrigationController" xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IrrigationController.ZonaAll"
 		     xmlns:ef="clr-namespace:AiForms.Effects;assembly=AiForms.Effects"
              Title="Zónák"
@@ -21,15 +21,16 @@
                   SeparatorVisibility="Default"
                   SelectionMode="Single"
                   BackgroundColor="White">
-            
+
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <ViewCell >
                         <Grid Padding="0,0,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="200" />
+                                <RowDefinition Height="5" />
                                 <RowDefinition Height="*" />
-                                <RowDefinition Height="10" />
+                                <RowDefinition Height="20" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="80" />
@@ -41,9 +42,17 @@
                                    Grid.ColumnSpan="2"         
                                    Source="bokrok.jpg"
                                    Aspect="AspectFill"/>
+
+                            <ProgressBar
+                                   Grid.Row="1"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Progress="{Binding OntozesProgress}"
+                                   IsVisible="{Binding OntozesKi}"
+                                   Margin="10,0,10,0"/>
                             
                             <Image Source="btnStart.png"
-                                   Grid.Row="1"    
+                                   Grid.Row="2"    
                                    Grid.Column="0"
                                    HeightRequest="60"
                                    WidthRequest="60"
@@ -53,11 +62,12 @@
                                     ef:AddNumberPicker.On="True"
 			                        ef:AddNumberPicker.Min="1"
 			                        ef:AddNumberPicker.Max="59"
+                                    ef:AddNumberPicker.Number="{Binding Hossz}"
 			                        ef:AddNumberPicker.Title="Öntözés hossza (perc)"
                                     ef:AddNumberPicker.Command="{Binding OntozesBeCommand}"/>
                             
                             <Image Source="btnStop.png"
-                                Grid.Row="1"    
+                                Grid.Row="2"    
                                 Grid.Column="0"
                                 HeightRequest="60"
                                 WidthRequest="60"
@@ -70,16 +80,17 @@
                                 
                             </Image>
 
-                            <Label  Grid.Row="1"
+                            <Label  Grid.Row="2"
                                     Grid.Column="1" 
-                                    Text="{Binding Nev}"
+                                    Text="{Binding Zona.Nev}"
                                     FontAttributes="Bold" FontSize="20"
                                     VerticalTextAlignment="Center"/>
-                            
-                            <Frame  Grid.Row="2"
+
+                            <Frame  Grid.Row="3"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"
-                                    BackgroundColor="#eeeeee" />
+                                    Margin="0,10,0,0"
+                                    BackgroundColor="#eeeeee"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
