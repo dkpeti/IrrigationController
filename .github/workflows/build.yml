@@ -12,6 +12,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Android
+      env:
+        Secret_IrrigationServerUrl: ${{ secrets.Secret_IrrigationServerUrl }}
+        Secret_GoogleClientId: ${{ secrets.Secret_GoogleClientId }}
+        Secret_GoogleClientSecret: ""
+        Secret_GoogleRedirectUrl: ${{ secrets.Secret_GoogleRedirectUrl }}
       run: |
         nuget restore
         cd IrrigationController/IrrigationController.Android
