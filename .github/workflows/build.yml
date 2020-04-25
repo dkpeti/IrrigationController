@@ -26,10 +26,4 @@ jobs:
       with:
         name: irrigationcontroller.apk
         path: IrrigationController/IrrigationController.Android/bin/Release/com.companyname.irrigationcontroller-Signed.apk
-    - name: Release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: IrrigationController/IrrigationController.Android/bin/Release/com.companyname.irrigationcontroller-Signed.apk
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
