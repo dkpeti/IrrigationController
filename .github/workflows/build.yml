@@ -26,4 +26,9 @@ jobs:
       with:
         name: irrigationcontroller.apk
         path: IrrigationController/IrrigationController.Android/bin/Release/com.companyname.irrigationcontroller-Signed.apk
+    - name: Create release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "IrrigationController/IrrigationController.Android/bin/Release/com.companyname.irrigationcontroller-Signed.apk"
+        token: ${{ secrets.GITHUB_TOKEN }}
 
