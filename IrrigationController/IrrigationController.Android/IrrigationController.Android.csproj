@@ -143,9 +143,6 @@
     <AndroidResource Include="Resources\drawable\bokrok.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\csepp.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\btnStart.png" />
   </ItemGroup>
   <ItemGroup>
