@@ -26,4 +26,3 @@ jobs:
       with:
         name: irrigationcontroller.apk
         path: IrrigationController/IrrigationController.Android/bin/Release/com.companyname.irrigationcontroller-Signed.apk
-
