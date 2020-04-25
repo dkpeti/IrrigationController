@@ -27,8 +27,14 @@ jobs:
         name: irrigationcontroller.apk
         path: IrrigationController/IrrigationController.Android/bin/Release/com.companyname.irrigationcontroller-Signed.apk
     - name: Create release
-      uses: ncipollo/release-action@v1
+      uses: Roang-zero1/github-create-release-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create GitHub release
+      uses: Roang-zero1/github-upload-release-artifacts-action@master
       with:
-        artifacts: "IrrigationController/IrrigationController.Android/bin/Release/com.companyname.irrigationcontroller-Signed.apk"
-        token: ${{ secrets.GITHUB_TOKEN }}
+        args:
+        - IrrigationController/IrrigationController.Android/bin/Release/com.companyname.irrigationcontroller-Signed.apk
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
