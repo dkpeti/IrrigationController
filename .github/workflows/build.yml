@@ -26,14 +26,10 @@ jobs:
       with:
         name: irrigationcontroller.apk
         path: IrrigationController/IrrigationController.Android/bin/Release/com.companyname.irrigationcontroller-Signed.apk
-    - name: Create release
-      uses: Roang-zero1/github-create-release-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Create GitHub release
-      uses: Roang-zero1/github-upload-release-artifacts-action@master
+    - name: Release
+      uses: softprops/action-gh-release@v1
       with:
-        args: IrrigationController/IrrigationController.Android/bin/Release/com.companyname.irrigationcontroller-Signed.apk
+        files: IrrigationController/IrrigationController.Android/bin/Release/com.companyname.irrigationcontroller-Signed.apk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
