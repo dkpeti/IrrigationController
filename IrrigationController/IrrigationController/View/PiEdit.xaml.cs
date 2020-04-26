@@ -9,7 +9,7 @@ using Xamarin.Forms.Xaml;
 namespace IrrigationController
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PiEdit : ContentPage
+    public partial class PiEdit : BasePage
     {
         readonly private Pi mSelPi;
         public PiEdit(Pi mSelPi)

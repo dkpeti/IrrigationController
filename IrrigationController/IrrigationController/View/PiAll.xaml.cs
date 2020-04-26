@@ -16,24 +16,31 @@ namespace IrrigationController
         }
         protected override async void OnAppearing()
         {
-            base.OnAppearing();
-            IsBusy = true;
-            var response = await App.PiService.GetAllPiAsync();
-            IsBusy = false;
-            switch (response.Status)
+            try
             {
-                case Status.SUCCESS:
-                    {
-                        PiList.ItemsSource = response.Data;
-                        break;
-                    }
-                case Status.OTHER_ERROR:
-                    {
-                        PiList.ItemsSource = response.Data;
-                        await DisplayAlert("Error", response.StatusString, "Ok");
-                        break;
-                    }
+                IsBusy = true;
+                base.OnAppearing();    
+                var response = await App.PiService.GetAllPiAsync();
+                switch (response.Status)
+                {
+                    case Status.SUCCESS:
+                        {
+                            PiList.ItemsSource = response.Data;
+                            break;
+                        }
+                    case Status.OTHER_ERROR:
+                        {
+                            PiList.ItemsSource = response.Data;
+                            await DisplayAlert("Error", response.StatusString, "Ok");
+                            break;
+                        }
+                }
             }
+            finally
+            {
+                IsBusy = false;
+            }
+            
         }
         public async void OnSelection(object sender, SelectedItemChangedEventArgs e)
         {

@@ -15,7 +15,7 @@ using static IrrigationController.ZonaEdit;
 namespace IrrigationController
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ZonaAdd : ContentPage
+    public partial class ZonaAdd : BasePage
     {
         public Zona Zona { get; set; }
         public List<Pi> Pis { get; set; }
@@ -28,14 +28,23 @@ namespace IrrigationController
         }
         protected async override void OnAppearing()
         {
-            base.OnAppearing();
+            try
+            {
+                IsBusy = true;
+                base.OnAppearing();
 
-            Pis = await GetPis();
-            if (Pis == null) return;
+                Pis = await GetPis();
+                if (Pis == null) return;
 
-            Szenzorok = new ObservableCollection<CheckedSensor>();
+                Szenzorok = new ObservableCollection<CheckedSensor>();
 
-            BindingContext = this;
+                BindingContext = this;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+            
         }
 
         public async void SaveClicked(object sender, EventArgs args)

@@ -31,11 +31,11 @@ namespace IrrigationController
 
         protected override async void OnAppearing()
         {
-            base.OnAppearing();
+            
             try
             {
                 IsBusy = true;
-
+                base.OnAppearing();
                 zona = await GetZona(zonaId);
                 if (zona == null) return;
 

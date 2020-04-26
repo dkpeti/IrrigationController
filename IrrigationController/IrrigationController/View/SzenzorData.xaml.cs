@@ -12,7 +12,7 @@ using Xamarin.Forms.Xaml;
 namespace IrrigationController
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SzenzorData : ContentPage
+    public partial class SzenzorData : BasePage
     {
         private readonly int szenzorId;
         private Szenzor szenzor;
@@ -29,24 +29,31 @@ namespace IrrigationController
         }
         protected override async void OnAppearing()
         {
-            base.OnAppearing();
-
-            szenzor = await GetSzenzor(szenzorId);
-            if (szenzor == null) return;
-
-            meresek = await GetMeresek(szenzor);
-            if (meresek == null) return;
-
-            BindingContext = new
+            try
             {
-                Szenzor = szenzor,
-                SzenzorTipus = SzenzorTipus(szenzor),
-                Meresek = meresek.Select(meres => new
+                IsBusy = true;
+                base.OnAppearing();
+                szenzor = await GetSzenzor(szenzorId);
+                if (szenzor == null) return;
+
+                meresek = await GetMeresek(szenzor);
+                if (meresek == null) return;
+
+                BindingContext = new
                 {
-                    Mikor = meres.Mikor.ToString("yyyy-MM-dd hh:mm"),
-                    MertAdat = MertAdat(szenzor, meres)
-                })
-            };
+                    Szenzor = szenzor,
+                    SzenzorTipus = SzenzorTipus(szenzor),
+                    Meresek = meresek.Select(meres => new
+                    {
+                        Mikor = meres.Mikor.ToString("yyyy-MM-dd hh:mm"),
+                        MertAdat = MertAdat(szenzor, meres)
+                    })
+                };
+            }
+            finally
+            {
+                IsBusy = false;
+            }  
         }
 
         //szerkesztésre átnavigál

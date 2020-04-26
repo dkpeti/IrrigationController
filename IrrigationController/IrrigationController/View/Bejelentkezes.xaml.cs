@@ -11,7 +11,7 @@ namespace IrrigationController
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Bejelentkezes : BasePage
     {
-        public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
+        public ICommand Feltetelek => new Command<string>(async (url) => await Launcher.OpenAsync(url));
         public Bejelentkezes()
         {
             InitializeComponent();

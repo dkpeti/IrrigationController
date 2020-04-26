@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<irrigationcontroller:BasePage
+    xmlns:irrigationcontroller="clr-namespace:IrrigationController"
+    xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -22,4 +24,4 @@
         <Entry  Margin="17,0,17,0" BackgroundColor="#f0f0f0" x:Name="txtPiAzonosito" Keyboard="Text" TextColor="Black" FontSize="22"/>
     </StackLayout>
 
-</ContentPage>
+</irrigationcontroller:BasePage>

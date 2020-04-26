@@ -32,8 +32,8 @@
                           TextColor="Black"
                           TextDecorations="Underline">
                         <Span.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding TapCommand}"
-                                                  CommandParameter="https://docs.microsoft.com/xamarin/" />
+                            <TapGestureRecognizer Command="{Binding Feltetelek}"
+                                                  CommandParameter="https://dotnet.microsoft.com/apps/xamarin" />
                         </Span.GestureRecognizers>
                     </Span>
                 </FormattedString>

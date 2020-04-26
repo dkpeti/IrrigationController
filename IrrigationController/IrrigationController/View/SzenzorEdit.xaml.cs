@@ -12,7 +12,7 @@ using Xamarin.Forms.Xaml;
 namespace IrrigationController
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SzenzorEdit : ContentPage
+    public partial class SzenzorEdit : BasePage
     {
         public Szenzor Szenzor { get; set; }
         public SzenzorEdit(Szenzor mSelSzenzor)

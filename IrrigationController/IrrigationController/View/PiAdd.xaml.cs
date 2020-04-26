@@ -11,7 +11,7 @@ using Plugin.Toast.Abstractions;
 namespace IrrigationController
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PiAdd : ContentPage
+    public partial class PiAdd : BasePage
     {
         public PiAdd()
         {
