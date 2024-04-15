@@ -69,7 +69,7 @@ namespace IrrigationController
         }
         public async void DeleteClicked(object sender, EventArgs args)
         {
-            bool accepted = await DisplayAlert("Törlés",$"Biztos törli a(z) {pi.Nev} pit?", "Igen", "Nem");
+            bool accepted = await DisplayAlert("Törlés",$"Biztosan törli a(z) {pi.Nev} pi-t?", "Igen", "Nem");
             if (accepted)
             {
                 var response = await App.PiService.DeleteTodoItemAsync(pi);
@@ -83,7 +83,7 @@ namespace IrrigationController
                         }
                     case Status.OTHER_ERROR:
                         {
-                            await DisplayAlert("Error", response.StatusString, "Ok");
+                            await DisplayAlert("Hiba", response.StatusString, "Ok");
                             break;
                         }
                 }
@@ -101,13 +101,13 @@ namespace IrrigationController
                     }
                 case Status.NOT_FOUND:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         await Navigation.PopAsync();
                         return null;
                     }
                 case Status.OTHER_ERROR:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         return null;
                     }
             }
@@ -125,13 +125,13 @@ namespace IrrigationController
                     }
                 case Status.NOT_FOUND:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         await Navigation.PopAsync();
                         return null;
                     }
                 case Status.OTHER_ERROR:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         return null;
                     }
             }
@@ -149,26 +149,26 @@ namespace IrrigationController
                     }
                 case Status.NOT_FOUND:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         await Navigation.PopAsync();
                         return null;
                     }
                 case Status.OTHER_ERROR:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         return null;
                     }
             }
             return null;
         }
 
-        //listában a ha rákattintok valamelyik zónára
+        //listában ha rákattintok valamelyik zónára
         private async void ZonaTapped(Zona zona)
         {
             await Navigation.PushAsync(new ZonaData(zona));
         }
 
-        //listában a ha rákattintok valamelyik szenzorra
+        //listában ha rákattintok valamelyik szenzorra
 
         private async void SzenzorTapped(Szenzor szenzor)
         {

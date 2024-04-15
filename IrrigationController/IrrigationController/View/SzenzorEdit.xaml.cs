@@ -26,12 +26,12 @@ namespace IrrigationController
         {
             if (String.IsNullOrEmpty(txtSzenzorNev.Text))
             {
-                await DisplayAlert("Error", "Név ne legyen üres!", "Ok");
+                await DisplayAlert("Hiba", "A név nem lehet üres!", "Ok");
                 return;
             }
             else if (String.IsNullOrEmpty(txtSzenzorMegjegyzes.Text))
             {
-                await DisplayAlert("Error", "Megjegyzes nem lehet üres!", "Ok");
+                await DisplayAlert("Hiba", "A megjegyzés nem lehet üres!", "Ok");
                 return;
             }
             var response = await App.SzenzorService.EditSzenzorItemAsync(Szenzor);
@@ -44,7 +44,7 @@ namespace IrrigationController
                     }
                 case Status.OTHER_ERROR:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         break;
                     }
             }

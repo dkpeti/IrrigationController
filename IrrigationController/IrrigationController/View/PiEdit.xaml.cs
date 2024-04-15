@@ -22,12 +22,12 @@ namespace IrrigationController
         {
             if (String.IsNullOrEmpty(txtPiNev.Text))
             {
-                await DisplayAlert("Error", "Név ne legyen üres!", "Ok");
+                await DisplayAlert("Hiba", "A név nem lehet üres!", "Ok");
                 return;
             }
             else if (String.IsNullOrEmpty(txtPiAzonosito.Text))
             {
-                await DisplayAlert("Error", "Azonosító nem lehet üres!", "Ok");
+                await DisplayAlert("Hiba", "Az azonosító nem lehet üres!", "Ok");
                 return;
             }
             var response = await App.PiService.EditPiItemAsync(mSelPi);
@@ -35,13 +35,13 @@ namespace IrrigationController
             {
                 case Status.SUCCESS:
                     {
-                        CrossToastPopUp.Current.ShowCustomToast($"{txtPiNev.Text} sikeresen mentve", bgColor: "#636363", txtColor: "white", ToastLength.Short);
+                        CrossToastPopUp.Current.ShowCustomToast($"{txtPiNev.Text} Pi sikeresen módosítva", bgColor: "#636363", txtColor: "white", ToastLength.Short);
                         await Navigation.PopAsync();
                         break;
                     }
                 case Status.OTHER_ERROR:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         break;
                     }
             }

@@ -17,6 +17,7 @@ namespace IrrigationController
         protected override void OnCurrentPageChanged()
         {
             base.OnCurrentPageChanged();
+            //aktiális oldalnév kiírása a fejlécen
             Title = CurrentPage.Title;
         }
     }

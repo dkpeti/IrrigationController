@@ -17,7 +17,7 @@ namespace IrrigationController
             InitializeComponent();
             BindingContext = this;
             IsBusy = false;
-            //a toolbar elrejtése
+            //a toolbar elrejtése a bejelentkezések oldalon
             NavigationPage.SetHasNavigationBar(this, false);
         }
 
@@ -43,11 +43,6 @@ namespace IrrigationController
             IsBusy = false;
             await DisplayAlert("Error", reason, "Ok");
         }
-
-        //private async void Felhasznalo_Clicked(object sender, EventArgs e)
-        //{
-        //    //await Navigation.PushAsync(new Profil());
-        //}
     }
 
     public enum AuthProvider

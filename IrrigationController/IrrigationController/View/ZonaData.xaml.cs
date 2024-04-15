@@ -60,30 +60,38 @@ namespace IrrigationController
             
         }
 
-        //szerkesztés átnavigál
+        //szerkesztésre átnavigál
         public async void EditClicked(object sender, EventArgs args)
         {
             await Navigation.PushAsync(new ZonaEdit(zona));
         }
         public async void DeleteClicked(object sender, EventArgs args)
         {
-            bool accepted = await DisplayAlert("Törlés", $"Biztos törli a(z) {zona.Nev} zónát?", "Igen", "Nem");
+            bool accepted = await DisplayAlert("Törlés", $"Biztosan törli a(z) {zona.Nev} zónát?", "Igen", "Nem");
             if (accepted)
             {
-                var response = await App.ZonaService.DeleteTodoItemAsync(zona);
-                switch (response.Status)
+                try
                 {
-                    case Status.SUCCESS:
-                        {
-                            CrossToastPopUp.Current.ShowCustomToast($"{zona.Nev} sikeresen törölve", bgColor: "#636363", txtColor: "white", ToastLength.Short);
-                            await Navigation.PopAsync();
-                            break;
-                        }
-                    case Status.OTHER_ERROR:
-                        {
-                            await DisplayAlert("Error", response.StatusString, "Ok");
-                            break;
-                        }
+                    IsBusy = true;
+                    var response = await App.ZonaService.DeleteTodoItemAsync(zona);
+                    switch (response.Status)
+                    {
+                        case Status.SUCCESS:
+                            {
+                                CrossToastPopUp.Current.ShowCustomToast($"{zona.Nev} sikeresen törölve", bgColor: "#636363", txtColor: "white", ToastLength.Short);
+                                await Navigation.PopAsync();
+                                break;
+                            }
+                        case Status.OTHER_ERROR:
+                            {
+                                await DisplayAlert("Hiba", response.StatusString, "Ok");
+                                break;
+                            }
+                    }
+                }
+                finally
+                {
+                    IsBusy = false;
                 }
             }
         }
@@ -99,13 +107,13 @@ namespace IrrigationController
                     }
                 case Status.NOT_FOUND:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         await Navigation.PopAsync();
                         return null;
                     }
                 case Status.OTHER_ERROR:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         return null;
                     }
             }
@@ -123,13 +131,13 @@ namespace IrrigationController
                     }
                 case Status.NOT_FOUND:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         await Navigation.PopAsync();
                         return null;
                     }
                 case Status.OTHER_ERROR:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         return null;
                     }
             }
@@ -147,13 +155,13 @@ namespace IrrigationController
                     }
                 case Status.NOT_FOUND:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         await Navigation.PopAsync();
                         return null;
                     }
                 case Status.OTHER_ERROR:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         return null;
                     }
             }

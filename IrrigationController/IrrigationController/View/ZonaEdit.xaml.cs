@@ -65,12 +65,12 @@ namespace IrrigationController
         {
             if (String.IsNullOrEmpty(txtZonaNev.Text))
             {
-                await DisplayAlert("Error", "Név ne legyen üres!", "Ok");
+                await DisplayAlert("Hiba", "A név nem lehet üres!", "Ok");
                 return;
             }
             else if (SelPi == null)
             {
-                await DisplayAlert("Error", "Pi nem lehet üres!", "Ok");
+                await DisplayAlert("Hiba", "A Pi nem lehet üres!", "Ok");
                 return;
             }
 
@@ -85,13 +85,13 @@ namespace IrrigationController
             {
                 case Status.SUCCESS:
                     {
-                        CrossToastPopUp.Current.ShowCustomToast($"{txtZonaNev.Text} sikeresen mentve", bgColor: "#636363", txtColor: "white", ToastLength.Short);
+                        CrossToastPopUp.Current.ShowCustomToast($"{txtZonaNev.Text} zóna sikeresen módosítva", bgColor: "#636363", txtColor: "white", ToastLength.Short);
                         await Navigation.PopAsync();
                         break;
                     }
                 case Status.OTHER_ERROR:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         break;
                     }
             }
@@ -108,13 +108,13 @@ namespace IrrigationController
                     }
                 case Status.NOT_FOUND:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         await Navigation.PopAsync();
                         return null;
                     }
                 case Status.OTHER_ERROR:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         return null;
                     }
             }
@@ -132,13 +132,13 @@ namespace IrrigationController
                     }
                 case Status.NOT_FOUND:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         await Navigation.PopAsync();
                         return null;
                     }
                 case Status.OTHER_ERROR:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         return null;
                     }
             }
@@ -156,13 +156,13 @@ namespace IrrigationController
                     }
                 case Status.NOT_FOUND:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         await Navigation.PopAsync();
                         return null;
                     }
                 case Status.OTHER_ERROR:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         return null;
                     }
             }

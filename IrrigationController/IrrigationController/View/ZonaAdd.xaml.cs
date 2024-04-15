@@ -51,12 +51,12 @@ namespace IrrigationController
         {
             if (String.IsNullOrEmpty(txtZonaNev.Text))
             {
-                await DisplayAlert("Error", "A név nem lehet üres!", "Ok");
+                await DisplayAlert("Hiba", "A név nem lehet üres!", "Ok");
                 return;
             }
             else if(SelPi == null)
             {
-                await DisplayAlert("Error", "A pi nem lehet üres!", "Ok");
+                await DisplayAlert("Hiba", "A pi nem lehet üres!", "Ok");
                 return;
             }
 
@@ -69,23 +69,31 @@ namespace IrrigationController
                     .Select(szenzor => szenzor.Szenzor.Id)
                     .ToArray()
             };
-            
-            var response = await App.ZonaService.CreateZonaItemAsync(vZona);
-            switch (response.Status)
+            try
             {
-                case Status.SUCCESS:
-                    {
-                        CrossToastPopUp.Current.ShowCustomToast($"{txtZonaNev.Text} sikeresen hozzáadva", bgColor: "#636363", txtColor: "white", ToastLength.Short);
-                        await Navigation.PopAsync();
-                        await Navigation.PushAsync(new ZonaData(response.Data));
-                        break;
-                    }
-                case Status.OTHER_ERROR:
-                    {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
-                        break;
-                    }
+                IsBusy = true;
+                var response = await App.ZonaService.CreateZonaItemAsync(vZona);
+                switch (response.Status)
+                {
+                    case Status.SUCCESS:
+                        {
+                            CrossToastPopUp.Current.ShowCustomToast($"{txtZonaNev.Text} zóna sikeresen hozzáadva", bgColor: "#636363", txtColor: "white", ToastLength.Short);
+                            await Navigation.PopAsync();
+                            await Navigation.PushAsync(new ZonaData(response.Data));
+                            break;
+                        }
+                    case Status.OTHER_ERROR:
+                        {
+                            await DisplayAlert("Hiba", response.StatusString, "Ok");
+                            break;
+                        }
+                }
             }
+            finally
+            {
+                IsBusy = false;
+            }
+            
         }
         private async Task<List<Pi>> GetPis()
         {
@@ -98,13 +106,13 @@ namespace IrrigationController
                     }
                 case Status.NOT_FOUND:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         await Navigation.PopAsync();
                         return null;
                     }
                 case Status.OTHER_ERROR:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         return null;
                     }
             }
@@ -122,13 +130,13 @@ namespace IrrigationController
                     }
                 case Status.NOT_FOUND:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         await Navigation.PopAsync();
                         return null;
                     }
                 case Status.OTHER_ERROR:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         return null;
                     }
             }

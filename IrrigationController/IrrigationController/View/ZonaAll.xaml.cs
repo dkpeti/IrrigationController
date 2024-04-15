@@ -102,7 +102,7 @@ namespace IrrigationController
                     }
                 case Status.OTHER_ERROR:
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         return null;
                     }
                 default:
@@ -127,7 +127,7 @@ namespace IrrigationController
                 {
                     case Status.SUCCESS:
                         {
-                            CrossToastPopUp.Current.ShowCustomToast($"Öntözés elindítva {hossz} percre", bgColor: "#636363", txtColor: "white", ToastLength.Long);
+                            CrossToastPopUp.Current.ShowCustomToast($"{zona.Nev} öntözése elindítva {hossz} percre", bgColor: "#636363", txtColor: "white", ToastLength.Long);
                             await Reload();
                             break;
                         }
@@ -163,13 +163,13 @@ namespace IrrigationController
                 {
                     case Status.SUCCESS:
                         {
-                            CrossToastPopUp.Current.ShowCustomToast($"Öntözés leállítva", bgColor: "#636363", txtColor: "white", ToastLength.Long);
+                            CrossToastPopUp.Current.ShowCustomToast($"{zona.Nev} öntözése leállítva", bgColor: "#636363", txtColor: "white", ToastLength.Long);
                             await Reload();
                             break;
                         }
                     case Status.OTHER_ERROR:
                         {
-                            await DisplayAlert("Error", response.StatusString, "Ok");
+                            await DisplayAlert("Hiba", response.StatusString, "Ok");
                             return;
                         }
                     default:

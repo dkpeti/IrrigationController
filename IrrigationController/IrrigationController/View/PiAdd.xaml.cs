@@ -21,12 +21,12 @@ namespace IrrigationController
         {
             if (String.IsNullOrEmpty(txtPiNev.Text))
             {
-                await DisplayAlert("Error", "Név ne legyen üres!", "Ok");
+                await DisplayAlert("Error", "A név nem lehet üres!", "Ok");
                 return;
             }
             else if (String.IsNullOrEmpty(txtPiAzonosito.Text))
             {
-                await DisplayAlert("Error", "Azonosító nem lehet üres!", "Ok");
+                await DisplayAlert("Error", "Az azonosító nem lehet üres!", "Ok");
                 return;
             }
 
@@ -36,22 +36,31 @@ namespace IrrigationController
                 Azonosito = txtPiAzonosito.Text,
             };
 
-            var response = await App.PiService.CreatePiItemAsync(vPi);
-            switch (response.Status)
+            try
             {
-                case Status.SUCCESS:
-                    {
-                        CrossToastPopUp.Current.ShowCustomToast($"{txtPiNev.Text} sikeresen hozzáadva", bgColor: "#636363", txtColor: "white", ToastLength.Short);
-                        await Navigation.PopAsync();
-                        await Navigation.PushAsync(new PiData(response.Data));
-                        break;
-                    }
-                case Status.OTHER_ERROR:
-                    {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
-                        break;
-                    }
+                IsBusy = true;
+                var response = await App.PiService.CreatePiItemAsync(vPi);
+                switch (response.Status)
+                {
+                    case Status.SUCCESS:
+                        {
+                            CrossToastPopUp.Current.ShowCustomToast($"{txtPiNev.Text} Pi sikeresen hozzáadva", bgColor: "#636363", txtColor: "white", ToastLength.Short);
+                            await Navigation.PopAsync();
+                            await Navigation.PushAsync(new PiData(response.Data));
+                            break;
+                        }
+                    case Status.OTHER_ERROR:
+                        {
+                            await DisplayAlert("Error", response.StatusString, "Ok");
+                            break;
+                        }
+                }
             }
+            finally
+            {
+                IsBusy = false;
+            }
+            
         }
     }
 }
