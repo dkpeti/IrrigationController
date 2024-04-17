@@ -14,6 +14,10 @@ namespace IrrigationController
         {
             InitializeComponent();
         }
+
+        // Lekéri a Raspberry Pi-k adatait a szerverről
+        // Sikeres lekérés esetén az adatokat megjeleníti a felhasználónak a PiList nézetben
+        // Hiba esetén hibaüzenetet dob
         protected override async void OnAppearing()
         {
             try
@@ -31,7 +35,7 @@ namespace IrrigationController
                     case Status.OTHER_ERROR:
                         {
                             PiList.ItemsSource = response.Data;
-                            await DisplayAlert("Error", response.StatusString, "Ok");
+                            await DisplayAlert("Hiba", response.StatusString, "Ok");
                             break;
                         }
                 }
@@ -42,16 +46,21 @@ namespace IrrigationController
             }
             
         }
+
+        // Ha a felhasználó kiválaszt egy elemet a PiList nézetből,
+        // Továbbnavigál a PiData oldalra a kiválasztott Pi objektum részleteivel
         public async void OnSelection(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null)
             {
                 return;
-            }
-            var vSelUser = (Pi)e.SelectedItem;
-            await Navigation.PushAsync(new PiData(vSelUser));
-            PiList.SelectedItem = null;
+            }   
+            var vSelUser = (Pi)e.SelectedItem;                      // Kiválasztott Pi objektum lekérése
+            await Navigation.PushAsync(new PiData(vSelUser));       // Az új PiData oldalra navigálás a kiválasztott Pi objektum részleteivel
+            PiList.SelectedItem = null;                             // A kiválasztás megszüntetése a PiList nézetben
         }
+
+        // PiAdd oldal megynitása, ami lehetővé teszi a felhasználó számára, hogy új Pi-t adjon hozzá.
         private async void PiAddClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PiAdd());
