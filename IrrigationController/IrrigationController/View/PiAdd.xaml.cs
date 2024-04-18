@@ -49,14 +49,14 @@ namespace IrrigationController
                 {
                     case Status.SUCCESS:
                         {
-                            CrossToastPopUp.Current.ShowCustomToast($"{txtPiNev.Text} Pi sikeresen hozzáadva", bgColor: "#636363", txtColor: "white", ToastLength.Short);       // Felugró értesítés
+                            CrossToastPopUp.Current.ShowCustomToast($"{txtPiNev.Text} Pi sikeresen hozzáadva", bgColor: "#636363", txtColor: "white", ToastLength.Short);       // Felugró értesítés a sikeres hozzáadásról
                             await Navigation.PopAsync();                                // A PiAdd oldalról visszalép
                             await Navigation.PushAsync(new PiData(response.Data));      // Tovább lép az új PiData oldalra amely tartalmazza a mentett adatokat
                             break;
                         }
                     case Status.OTHER_ERROR:
                         {
-                            await DisplayAlert("Hiba", response.StatusString, "Ok");
+                            await DisplayAlert("Hiba", response.StatusString, "Ok");        // Ha valamiért nem tudja menteni, hibaüzenet megjelenítése
                             break;
                         }
                 }

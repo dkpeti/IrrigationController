@@ -32,6 +32,8 @@ namespace IrrigationController
             pi = aSelPi;
             piId = aSelPi.Id;
         }
+
+        // Az oldal megjelenítésekor meghívódik
         protected async override void OnAppearing()
         {
             try
@@ -39,22 +41,23 @@ namespace IrrigationController
                 IsBusy = true;
                 base.OnAppearing();
 
-                pi = await GetPi(pi.Id);
+                pi = await GetPi(pi.Id);                            //Pi Id lekérése
                 if (pi == null) return;
 
-                zonak = await GetZonakByPi(pi.Id);
+                zonak = await GetZonakByPi(pi.Id);                  // A Pi-hez tartozó zónák lekérése
                 if (zonak == null) return;
 
-                szenzorok = await GetSzenzorokByPiId(pi.Id);
+                szenzorok = await GetSzenzorokByPiId(pi.Id);        // A Pi-hez tartozó szenzorok lekérése
                 if (szenzorok == null) return;
 
+                // Data binding 
                 BindingContext = new
                 {
                     Pi = pi,
                     Zonak = zonak,
-                    ZonaTappedCommand = new Command<Zona>(ZonaTapped),
+                    ZonaTappedCommand = new Command<Zona>(ZonaTapped),              // Zónára kattintás
                     Szenzorok = szenzorok,
-                    SzenzorTappedCommand = new Command<Szenzor>(SzenzorTapped)
+                    SzenzorTappedCommand = new Command<Szenzor>(SzenzorTapped)      // Szenzorra kattintás
                 };
             }
             finally
@@ -63,37 +66,48 @@ namespace IrrigationController
             }
            
         }
+
+        // Pi adatai szerkesztése, PiEdit oldal megnyitása
         public async void EditClicked(object sender, EventArgs args)
         {
             await Navigation.PushAsync(new PiEdit(pi));
         }
+
+        // A "DeleteClicked" metódus az eseménykezelője a "Törlés" (kuka) ikon gomb lenyomásának
+        // Megjelenít egy megerősítő üzenetet a felhasználónak a pi törléséről, és várja a választ
         public async void DeleteClicked(object sender, EventArgs args)
         {
             bool accepted = await DisplayAlert("Törlés",$"Biztosan törli a(z) {pi.Nev} pi-t?", "Igen", "Nem");
             if (accepted)
-            {
+            {               
                 var response = await App.PiService.DeleteTodoItemAsync(pi);
+                
+                // A válasz alapján megfelelő visszajelzés megjelenítése
                 switch (response.Status)
                 {
                     case Status.SUCCESS:
                         {
-                            CrossToastPopUp.Current.ShowCustomToast($"{pi.Nev} sikeresen törölve", bgColor: "#636363", txtColor: "white", ToastLength.Short);
-                            await Navigation.PopAsync();
+                            CrossToastPopUp.Current.ShowCustomToast($"{pi.Nev} sikeresen törölve", bgColor: "#636363", txtColor: "white", ToastLength.Short);       // Felugró értesítés a sikeres törlésről
+                            await Navigation.PopAsync();                // A PiData oldalról visszalép
                             break;
                         }
                     case Status.OTHER_ERROR:
                         {
-                            await DisplayAlert("Hiba", response.StatusString, "Ok");
+                            await DisplayAlert("Hiba", response.StatusString, "Ok");        // Ha valamiért nem tudja törölni, hibaüzenet megjelenítése
                             break;
                         }
                 }
             }
         }
 
+        // Lekéri a Pi-t az azonosító alapján
+        // A kapott válasz státuszát megvizsgálja és ennek megfelelően ad visszajelzést
         private async Task<Pi> GetPi(int piId)
-        {
-            var response = await App.PiService.GetOnePiByIdAsync(piId);
-            switch (response.Status)
+        {         
+            var response = await App.PiService.GetOnePiByIdAsync(piId);     // Lekéri az adott azonosítójú Pi-t 
+            
+            // A válasz alapján megfelelő visszajelzés megjelenítése
+            switch (response.Status)        
             {
                 case Status.SUCCESS:
                     {
@@ -111,12 +125,17 @@ namespace IrrigationController
                         return null;
                     }
             }
+            // Ha nem találtunk hibát, de nem sikerült adatot lekérni, akkor null-t adunk vissza
             return null;
         }
 
+        // Lekéri a Pi-hez tartozó zónákat a Pi Id alapján
+        // A kapott válasz státuszát megvizsgálja és ennek megfelelően ad visszajelzést
         private async Task<List<Zona>> GetZonakByPi(int piId)
         {
-            var response = await App.ZonaService.GetAllZonaByPiIdAsync(piId);
+            var response = await App.ZonaService.GetAllZonaByPiIdAsync(piId);       // Lekéri a Pi-hez tartozó zónákat 
+
+            // A válasz alapján megfelelő visszajelzés megjelenítése
             switch (response.Status)
             {
                 case Status.SUCCESS:
@@ -135,12 +154,17 @@ namespace IrrigationController
                         return null;
                     }
             }
+            // Ha nem találtunk hibát, de nem sikerült adatot lekérni, akkor null-t adunk vissza
             return null;
         }
 
-        private async Task<List<Szenzor>> GetSzenzorokByPiId(int piId)
+        // Lekéri a Pi-hez tartozó szenzorokat a Pi Id alapján
+        // A kapott válasz státuszát megvizsgálja és ennek megfelelően ad visszajelzést
+        private async Task<List<Szenzor>> GetSzenzorokByPiId(int piId)          // Lekéri a Pi-hez tartozó szenzorokat 
         {
             var response = await App.SzenzorService.GetAllSzenzorByPiIdAsync(piId);
+
+            // A válasz alapján megfelelő visszajelzés megjelenítése
             switch (response.Status)
             {
                 case Status.SUCCESS:
@@ -159,17 +183,17 @@ namespace IrrigationController
                         return null;
                     }
             }
+            // Ha nem találtunk hibát, de nem sikerült adatot lekérni, akkor null-t adunk vissza
             return null;
         }
 
-        //listában ha rákattintok valamelyik zónára
+        // Ha rákattintok egy zónára átnavigál a zóna adataira
         private async void ZonaTapped(Zona zona)
         {
             await Navigation.PushAsync(new ZonaData(zona));
         }
 
-        //listában ha rákattintok valamelyik szenzorra
-
+        // Ha rákattintok egy szenzorra átnavigál a szenzor adataira
         private async void SzenzorTapped(Szenzor szenzor)
         {
             await Navigation.PushAsync(new SzenzorData(szenzor));

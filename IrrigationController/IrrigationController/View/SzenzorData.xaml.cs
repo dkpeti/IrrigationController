@@ -107,12 +107,14 @@ namespace IrrigationController
             }
         }
 
-        // aszinkron módon lekéri a szenzort az azonosító alapján
-        // a kapott válasz státuszát megvizsgálja és ennek megfelelően ad vissza értéket
+        // Lekéri a szenzort az azonosító alapján
+        // A kapott válasz státuszát megvizsgálja és ennek megfelelően ad visszajelzést
         private async Task<Szenzor> GetSzenzor(int szenzorId)
         {
-            var response = await App.SzenzorService.GetOneSzenzorByIdAsync(szenzorId);  // aszinkron módon kéri le az adott azonosítójú szenzort    
-            switch (response.Status)     // A kapott válasz státuszát megvizsgáljuk
+            var response = await App.SzenzorService.GetOneSzenzorByIdAsync(szenzorId);  // Lekéri az adott azonosítójú szenzort    
+            
+            // A válasz alapján megfelelő visszajelzés megjelenítése
+            switch (response.Status)     
             {
                 case Status.SUCCESS:
                     {
@@ -130,7 +132,7 @@ namespace IrrigationController
                         return null;
                     }
             }
-            // Ha nem találtunk hibát, de nem sikerült adatot lekérni, akkor null-t adunk vissza.
+            // Ha nem találtunk hibát, de nem sikerült adatot lekérni, akkor null-t adunk vissza
             return null;
         }
 
