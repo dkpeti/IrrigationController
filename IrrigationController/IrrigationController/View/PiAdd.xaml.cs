@@ -18,7 +18,7 @@ namespace IrrigationController
             InitializeComponent();
         }
 
-        // Menti a felhasználó által megadott Raspberry Pi adatokat a szerverre
+        // Menti a felhasználó által megadott Pi adatokat a szerverre
         public async void SaveClicked(object sender, EventArgs args)
         {
             if (String.IsNullOrEmpty(txtPiNev.Text))                                // Ellenőrzi, hogy a név mező nem üres-e
