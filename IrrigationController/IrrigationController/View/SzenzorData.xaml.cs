@@ -128,7 +128,7 @@ namespace IrrigationController
                     }
                 case Status.OTHER_ERROR:        
                     {
-                        await DisplayAlert("Error", response.StatusString, "Ok");
+                        await DisplayAlert("Hiba", response.StatusString, "Ok");
                         return null;
                     }
             }
@@ -136,8 +136,8 @@ namespace IrrigationController
             return null;
         }
 
-        // aszinkron módon lekéri a méréseket az adott szenzorhoz
-        // a kapott válasz státuszát megvizsgálja és ennek megfelelően ad vissza értéket
+        // Aszinkron módon lekéri a méréseket az adott szenzorhoz
+        // A kapott válasz státuszát megvizsgálja és ennek megfelelően ad vissza értéket
         private async Task<List<Meres>> GetMeresek(Szenzor szenzor)     //A lekért méréseket tartalmazó lista, vagy null, ha valamilyen hiba történt
         {
             var response = await App.MeresService.GetAllMeresBySzenzorIdAsync(szenzor.Id); // aszinkron módon kéri le az összes mérést a megadott szenzor azonosítója alapján

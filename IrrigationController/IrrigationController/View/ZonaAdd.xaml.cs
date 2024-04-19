@@ -47,14 +47,15 @@ namespace IrrigationController
             
         }
 
+        // Menti a felhasználó által megadott zóna adatokat a szerverre
         public async void SaveClicked(object sender, EventArgs args)
         {
-            if (String.IsNullOrEmpty(txtZonaNev.Text))
+            if (String.IsNullOrEmpty(txtZonaNev.Text))                          // Ellenőrzi, hogy a név mező nem üres-e
             {
                 await DisplayAlert("Hiba", "A név nem lehet üres!", "Ok");
                 return;
             }
-            else if(SelPi == null)
+            else if(SelPi == null)                                              // Ellenőrzi, hogy pi legyen kiválasztva
             {
                 await DisplayAlert("Hiba", "A pi nem lehet üres!", "Ok");
                 return;
@@ -73,18 +74,20 @@ namespace IrrigationController
             {
                 IsBusy = true;
                 var response = await App.ZonaService.CreateZonaItemAsync(vZona);
+
+                // A válasz alapján megfelelő visszajelzés megjelenítése
                 switch (response.Status)
                 {
                     case Status.SUCCESS:
                         {
-                            CrossToastPopUp.Current.ShowCustomToast($"{txtZonaNev.Text} zóna sikeresen hozzáadva", bgColor: "#636363", txtColor: "white", ToastLength.Short);
-                            await Navigation.PopAsync();
-                            await Navigation.PushAsync(new ZonaData(response.Data));
+                            CrossToastPopUp.Current.ShowCustomToast($"{txtZonaNev.Text} zóna sikeresen hozzáadva", bgColor: "#636363", txtColor: "white", ToastLength.Short);       // Felugró értesítés a sikeres hozzáadásról
+                            await Navigation.PopAsync();                                    // A PiAdd oldalról visszalép
+                            await Navigation.PushAsync(new ZonaData(response.Data));        // Tovább lép az új ZonaData oldalra amely tartalmazza a mentett adatokat
                             break;
                         }
                     case Status.OTHER_ERROR:
                         {
-                            await DisplayAlert("Hiba", response.StatusString, "Ok");
+                            await DisplayAlert("Hiba", response.StatusString, "Ok");        // Ha valamiért nem tudja menteni, hibaüzenet megjelenítése
                             break;
                         }
                 }
@@ -95,9 +98,14 @@ namespace IrrigationController
             }
             
         }
+
+        // Lekéri a szerverről pi-ket
+        // A kapott válasz státuszát megvizsgálja és ennek megfelelően ad visszajelzést
         private async Task<List<Pi>> GetPis()
         {
             var response = await App.PiService.GetAllPiAsync();
+
+            // A válasz alapján megfelelő visszajelzés megjelenítése
             switch (response.Status)
             {
                 case Status.SUCCESS:
@@ -116,12 +124,17 @@ namespace IrrigationController
                         return null;
                     }
             }
+            // Ha nem találtunk hibát, de nem sikerült adatot lekérni, akkor null-t adunk vissza
             return null;
         }
 
-        private async Task<List<Szenzor>> GetLehetsegesSzenzorok(int piId)
+        // Lekéri a pi-hez tartozó szenzorokat
+        // A kapott válasz státuszát megvizsgálja és ennek megfelelően ad vissza értéket
+        private async Task<List<Szenzor>> GetLehetsegesSzenzorok(int piId)              // A lekért szenzorokat tartalmazó lista, vagy null, ha valamilyen hiba történt
         {
-            var response = await App.SzenzorService.GetAllSzenzorByPiIdAsync(piId);
+            var response = await App.SzenzorService.GetAllSzenzorByPiIdAsync(piId);     // Lekéri az összes pi-hez tartozó szenzort
+
+            // A válasz alapján megfelelő visszajelzés megjelenítése
             switch (response.Status)
             {
                 case Status.SUCCESS:
@@ -140,15 +153,18 @@ namespace IrrigationController
                         return null;
                     }
             }
+            // Ha nem találtunk hibát, de nem sikerült adatot lekérni, akkor null-t adunk vissza
             return null;
         }
 
+        // (Melyik szenzorok vannak kijelölve)
         public class CheckedSensor
         {
             public Szenzor Szenzor { get; set; }
             public bool Checked { get; set; }
         }
 
+        // Frissíti az Szenzorok listát a Pi kiválasztásakor
         private async void PiPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             var lehetsegesSzenzorok = await GetLehetsegesSzenzorok(SelPi.Id);
