@@ -48,7 +48,7 @@ namespace IrrigationController
         }
 
         // Ha a felhasználó kiválaszt egy elemet a PiList nézetből,
-        // Továbbnavigál a PiData oldalra a kiválasztott Pi objektum részleteivel
+        // Továbbnavigál a PiData oldalra a kiválasztott Pi részleteivel
         public async void OnSelection(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null)
@@ -57,7 +57,7 @@ namespace IrrigationController
             }   
             var vSelUser = (Pi)e.SelectedItem;                      // Kiválasztott Pi objektum lekérése
             await Navigation.PushAsync(new PiData(vSelUser));       // Az új PiData oldalra navigálás a kiválasztott Pi objektum részleteivel
-            PiList.SelectedItem = null;                             // A kiválasztás megszüntetése a PiList nézetben
+            PiList.SelectedItem = null;                             // A kiválasztás megszüntetése a PiList nézetben (biztosítja, hogy a felhasználó ne tudja ismételten kiválasztani ugyanazt az elemet)
         }
 
         // PiAdd oldal megynitása, ami lehetővé teszi a felhasználó számára, hogy új Pi-t adjon hozzá.
