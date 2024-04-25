@@ -65,7 +65,7 @@ namespace IrrigationController
             var zonak = await GetZonas();
             if (zonak == null) return;
 
-            // A nézet összekapcsolását az új adatokkal
+            // A nézet összekapcsolása az adatokkal
             BindingContext = new
             {
                 Zonak = zonak.Select(zona => {

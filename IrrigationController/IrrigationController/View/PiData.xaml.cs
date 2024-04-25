@@ -50,7 +50,7 @@ namespace IrrigationController
                 szenzorok = await GetSzenzorokByPiId(pi.Id);        // A Pi-hez tartozó szenzorok lekérése
                 if (szenzorok == null) return;
 
-                // Data binding 
+                // A nézet összekapcsolása az adatokkal
                 BindingContext = new
                 {
                     Pi = pi,
@@ -73,7 +73,7 @@ namespace IrrigationController
             await Navigation.PushAsync(new PiEdit(pi));
         }
 
-        // A "DeleteClicked" metódus az eseménykezelője a "Törlés" (kuka) ikon gomb lenyomásának
+        // A metódus az eseménykezelője a "Törlés" (kuka) ikon gomb lenyomásának
         // Megjelenít egy megerősítő üzenetet a felhasználónak a pi törléséről, és várja a választ
         public async void DeleteClicked(object sender, EventArgs args)
         {
@@ -88,7 +88,7 @@ namespace IrrigationController
                     case Status.SUCCESS:
                         {
                             CrossToastPopUp.Current.ShowCustomToast($"{pi.Nev} sikeresen törölve", bgColor: "#636363", txtColor: "white", ToastLength.Short);       // Felugró értesítés a sikeres törlésről
-                            await Navigation.PopAsync();                // A PiData oldalról visszalép
+                            await Navigation.PopAsync();        // A PiData oldalról visszalép
                             break;
                         }
                     case Status.OTHER_ERROR:
