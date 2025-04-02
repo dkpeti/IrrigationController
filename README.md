@@ -37,29 +37,27 @@ Az **IrrigationController** egy öntözőrendszer vezérlő alkalmazás, amely *
 ## Képernyőképek
 
 ### Bejelentkezés
-<img src="https://github.com/user-attachments/assets/d96072b9-6989-44ee-8cb2-03724ea3fdc8" alt="Bejelentkezés" width="240px" title="Bejelentkezési képernyő"/>
+<img src="https://github.com/user-attachments/assets/d96072b9-6989-44ee-8cb2-03724ea3fdc8" alt="Bejelentkezés" width="260px" title="Bejelentkezési képernyő"/>
 
 ### Pi kezelése
 <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
-  <img src="https://github.com/user-attachments/assets/ca567ab1-1757-40e1-a8bc-9fd386cb8fc5" alt="piAdd" width="240px"/>
-  <img src="https://github.com/user-attachments/assets/8f88ec15-38a8-4eb4-94fa-3ccc89dd1673" alt="piAll" width="240px"/>
-  <img src="https://github.com/user-attachments/assets/5d0ad9e4-2b64-4c49-a384-ce103229e3b1" alt="piData" width="240px"/>
-  <img src="https://github.com/user-attachments/assets/d1db3bcd-44d1-455a-9606-0ca6e591492c" alt="piEdit" width="240px"/>
+  <img src="https://github.com/user-attachments/assets/ca567ab1-1757-40e1-a8bc-9fd386cb8fc5" alt="piAdd" width="260px"/>
+  <img src="https://github.com/user-attachments/assets/8f88ec15-38a8-4eb4-94fa-3ccc89dd1673" alt="piAll" width="260px"/>
+  <img src="https://github.com/user-attachments/assets/5d0ad9e4-2b64-4c49-a384-ce103229e3b1" alt="piData" width="260px"/>
 </div>
 
 ### Szenzorok
 <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
-  <img src="https://github.com/user-attachments/assets/b8c55132-5ffe-4268-8d76-d98e07b30c6a" alt="sensorData" width="240px"/>
-  <img src="https://github.com/user-attachments/assets/cee2a446-5e1b-45bc-9cd6-034e9ee85969" alt="sensorData" width="240px"/>
+  <img src="https://github.com/user-attachments/assets/b8c55132-5ffe-4268-8d76-d98e07b30c6a" alt="sensorData" width="260px"/>
+  <img src="https://github.com/user-attachments/assets/cee2a446-5e1b-45bc-9cd6-034e9ee85969" alt="sensorData" width="260px"/>
 </div>
 
 ### Zóna kezelése
 <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
-  <img src="https://github.com/user-attachments/assets/a6612352-2e49-433f-b595-0dbc5e669d70" alt="zonaAdd" width="240px"/>
-  <img src="https://github.com/user-attachments/assets/7135b152-c856-4082-abc5-226eb18f2663" alt="zonaAll" width="240px"/>
-  <img src="https://github.com/user-attachments/assets/bdcaa8c8-410a-4599-ba55-e8d8b3a05f93" alt="zonaData" width="240px"/>
-  <img src="https://github.com/user-attachments/assets/e85d3ce1-a63f-49b7-af89-2ec25d685e42" alt="zonaDelete" width="240px"/>
+  <img src="https://github.com/user-attachments/assets/a6612352-2e49-433f-b595-0dbc5e669d70" alt="zonaAdd" width="260px"/>
+  <img src="https://github.com/user-attachments/assets/7135b152-c856-4082-abc5-226eb18f2663" alt="zonaAll" width="260px"/>
+  <img src="https://github.com/user-attachments/assets/e85d3ce1-a63f-49b7-af89-2ec25d685e42" alt="zonaDelete" width="260px"/>
 </div>
 
 ### Öntözés kezelése
-<img src="https://github.com/user-attachments/assets/b706739f-5d09-4ec5-bd61-62c11b15faf7" alt="Öntözés indítása" width="750px"/>
+<img src="https://github.com/user-attachments/assets/b706739f-5d09-4ec5-bd61-62c11b15faf7" alt="Öntözés indítása" width="780px"/>
