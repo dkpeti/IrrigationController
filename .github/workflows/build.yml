@@ -22,7 +22,7 @@ jobs:
         cd IrrigationController/IrrigationController.Android
         msbuild IrrigationController.Android.csproj /verbosity:normal /t:SignAndroidPackage /p:Configuration=Release
     - name: Upload APK
-      uses: actions/upload-artifact@v1    
+      uses: actions/upload-artifact@v3    
       with:
         name: irrigationcontroller.apk
         path: IrrigationController/IrrigationController.Android/bin/Release/com.companyname.irrigationcontroller-Signed.apk
